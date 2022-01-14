@@ -1,25 +1,30 @@
 import { useEffect, useState } from "react";
+import { Post, CanvaProps } from "../react-app-env";
 
-export default function Canva(props:any) {
+
+export default function Canva({editingNow, postFoiEditado }: CanvaProps) {
   //State of the post being currently edited
-  const [postCanva, setPostCanva] = useState({
+  const [editingNowInCanva, setEditingNowInCanva] = useState<Post>({
+    _id: undefined,
     titulo: "",
     conteudo: "",
+    __v:0
   });
 
   //Informing the canva component of the values of the post being edited
   useEffect(() => {
-    setPostCanva(props.postSendoEditado);
-  }, [props.postSendoEditado]);
+    setEditingNowInCanva(editingNow);
+  }, [editingNow]);
 
   //notifiing parent component of changes on the current post
   const HandleChange = async (e:any) => {
+
     let novo = {
-      ...postCanva,
+      ...editingNowInCanva,
       [e.target.id]: e.target.value,
     };
-    await props.postFoiEditado(novo);
-    setPostCanva(novo);
+    postFoiEditado(novo);
+    setEditingNowInCanva(novo);
   };
 
   return (
@@ -36,7 +41,7 @@ export default function Canva(props:any) {
         name="titulo"
         id="titulo"
         rows={2}
-        value={postCanva.titulo}
+        value={editingNowInCanva.titulo}
         onChange={HandleChange}
       />
       <textarea
@@ -49,7 +54,7 @@ export default function Canva(props:any) {
         id="conteudo"
         rows={5}
         onChange={HandleChange}
-        value={postCanva.conteudo}
+        value={editingNowInCanva.conteudo}
       />
     </div>
   );

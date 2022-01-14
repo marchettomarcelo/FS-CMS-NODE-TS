@@ -1,10 +1,5 @@
+import {ContentItemProps} from "../react-app-env"
 
-
-interface ContentItemProps{
-  conteudo:string, 
-  id:string, 
-  titulo:string
-}
 export default function ContentItem({ conteudo, id, titulo }:ContentItemProps) {
   return (
     <div
