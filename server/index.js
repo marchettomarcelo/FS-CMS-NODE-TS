@@ -26,6 +26,32 @@ app.post("/post", async (req, res) => {
   }
 });
 
+app.post("/post-many", async (req, res) => {
+  const dataToUpdateDatabase = req.body;
+
+  for (let i = 0; i < dataToUpdateDatabase.length; i++) {
+    const { _id, titulo, conteudo } = dataToUpdateDatabase[i];
+
+    if (!_id) {
+      const NewPost = new Post({ titulo, conteudo });
+      try {
+        await NewPost.save();
+      } catch (e) {
+        res.status(400).send(e.message);
+      }
+    } else {
+      try {
+        await Post.findByIdAndUpdate({ _id }, { titulo, conteudo });
+      } catch (e) {
+        res.status(400).send(e.message);
+      }
+    }
+  }
+  const post = await Post.find({});
+  console.log(post);
+  res.send("deu certo men");
+});
+
 app.get("/post", async (req, res) => {
   try {
     const post = await Post.find({});
