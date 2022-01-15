@@ -26,7 +26,7 @@ export default function ContentBar({conteudo, clickedChild, NewContentItemCreate
 
       // ---make api later---
       saveChanges()
-      console.log(conteudo);
+
     } else if (ControlBarId) {
       return clickedChild(ControlBarId);
     }

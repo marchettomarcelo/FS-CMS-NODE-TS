@@ -17,7 +17,7 @@ function App() {
   async function fetchData() {
     try {
       const { data } = await axios.get("/post");
-      console.log(data)
+      
       setEditingNow(data[0]);
       setConteudo(data);
     } catch (e) {
@@ -78,7 +78,10 @@ function App() {
     setConteudo(novo);
   };
 
-  const saveChanges = () => {
+  const saveChanges = async () => {
+    const result = await axios.post("/post-many", conteudo )
+    console.log(result.data)
+    
     fetchData()
   }
 
