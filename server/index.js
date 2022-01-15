@@ -26,7 +26,7 @@ app.post("/post", async (req, res) => {
   }
 });
 
-app.post("/post-many", async (req, res) => {
+app.patch("/update-posts", async (req, res) => {
   const dataToUpdateDatabase = req.body;
 
   for (let i = 0; i < dataToUpdateDatabase.length; i++) {
@@ -47,9 +47,21 @@ app.post("/post-many", async (req, res) => {
       }
     }
   }
-  const post = await Post.find({});
-  console.log(post);
+
+  // Not deleting the whole database
+  // const post = await Post.find({});
+
   res.send("deu certo men");
+});
+
+app.delete("/post/:_id", async (req, res) => {
+  const postBeingDeleted = req.params._id;
+  try {
+    await Post.findByIdAndDelete(postBeingDeleted);
+    res.send("Apagado com sucesso");
+  } catch (e) {
+    res.send(e.message);
+  }
 });
 
 app.get("/post", async (req, res) => {

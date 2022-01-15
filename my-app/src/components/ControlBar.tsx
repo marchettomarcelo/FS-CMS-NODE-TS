@@ -6,12 +6,12 @@ export default function Controls() {
   const id2:PossibleControlBarIds = "Save Changes"
   
   return (
-    <div className="flex flex-col xl:flex-row justify-between w-11/12 m-2">
+    <div className="flex flex-col gap-4 xl:flex-row justify-between w-11/12">
       <div
         id="Controls"
         className="border-4 bg-green-400 border-black border-solid 
           rounded shadow-lg  hover:bg-green-500 
-          active:bg-green-600 cursor-pointer flex-grow p-3
+          active:bg-green-600 cursor-pointer p-3
           "
       >
         <h3 id={id1} className="text-2xl font-bold text-center">
@@ -23,7 +23,7 @@ export default function Controls() {
         id="save"
         className="border-4 bg-blue-400 border-black border-solid 
            rounded shadow-lg  hover:bg-blue-500 
-          active:bg-blue-600 cursor-pointer flex-grow mt-2 p-3 xl:ml-2 xl:mt-0"
+          active:bg-blue-600 cursor-pointer p-3 "
       >
         <h3 id={id2} className="text-2xl font-bold text-center">
           Salvar Mudanças

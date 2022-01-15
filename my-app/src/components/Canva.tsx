@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Post, CanvaProps } from "../react-app-env";
 
 
-export default function Canva({editingNow, postFoiEditado }: CanvaProps) {
+export default function Canva({editingNow, postFoiEditado, deleteEditingNow }: CanvaProps) {
   //State of the post being currently edited
   const [editingNowInCanva, setEditingNowInCanva] = useState<Post>({
     _id: undefined,
@@ -30,7 +30,7 @@ export default function Canva({editingNow, postFoiEditado }: CanvaProps) {
   return (
     <div
       className="flex flex-col border-4 border-black border-solid 
-    w-9/12 h-11/12 my-4 mr-4 rounded shadow-2xl p-4 gap-4"
+    w-9/12 h-11/12 rounded shadow-2xl p-4 gap-4"
     >
       <textarea
         className="text-5xl font-extrabold  p-2
@@ -55,6 +55,12 @@ export default function Canva({editingNow, postFoiEditado }: CanvaProps) {
         rows={5}
         onChange={HandleChange}
         value={editingNowInCanva.conteudo}
+      />
+
+      <img src={require("../assets/X-cross.png")} 
+      alt="Close icon" 
+      className="bottom-8 right-8 absolute w-12 cursor-pointer"
+      onClick={deleteEditingNow}
       />
     </div>
   );

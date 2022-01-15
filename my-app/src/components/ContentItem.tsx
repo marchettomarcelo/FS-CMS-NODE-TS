@@ -5,7 +5,7 @@ export default function ContentItem({ conteudo, id, titulo }:ContentItemProps) {
     <div
       id={id}
       className="cursor-pointer border-4 border-black 
-        border-solid m-2 p-2 rounded shadow-lg w-11/12 
+        border-solid  p-2 rounded shadow-lg w-11/12 
         hover:bg-gray-200 active:bg-gray-300"
     >
       <h3 id={id} className="text-xl font-bold">

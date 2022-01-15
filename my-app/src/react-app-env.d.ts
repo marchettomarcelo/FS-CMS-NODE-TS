@@ -17,7 +17,8 @@ export interface ContentItemProps{
 
 export interface CanvaProps{
     editingNow: Post, 
-    postFoiEditado: (post:Post) => void
+    postFoiEditado: (post:Post) => void,
+    deleteEditingNow: ()=>void
 }
 
 export interface ContentBarProps{

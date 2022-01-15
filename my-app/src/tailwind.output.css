@@ -466,25 +466,24 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-backdrop-sepia:  ;
 }
 
-.m-2 {
-  margin: 0.5rem;
+.absolute {
+  position: absolute;
 }
 
-.my-4 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+.bottom-8 {
+  bottom: 2rem;
 }
 
-.mr-4 {
-  margin-right: 1rem;
-}
-
-.mt-2 {
-  margin-top: 0.5rem;
+.right-8 {
+  right: 2rem;
 }
 
 .flex {
   display: flex;
+}
+
+.grid {
+  display: grid;
 }
 
 .h-screen {
@@ -499,6 +498,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 75%;
 }
 
+.w-12 {
+  width: 3rem;
+}
+
 .w-3\/12 {
   width: 25%;
 }
@@ -509,10 +512,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-11\/12 {
   width: 91.666667%;
-}
-
-.flex-grow {
-  flex-grow: 1;
 }
 
 .cursor-pointer {
@@ -702,14 +701,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 @media (min-width: 1280px) {
-  .xl\:ml-2 {
-    margin-left: 0.5rem;
-  }
-
-  .xl\:mt-0 {
-    margin-top: 0px;
-  }
-
   .xl\:flex-row {
     flex-direction: row;
   }

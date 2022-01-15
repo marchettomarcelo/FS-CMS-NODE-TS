@@ -35,12 +35,12 @@ export default function ContentBar({conteudo, clickedChild, NewContentItemCreate
   
   return (
     <div
-      className="flex flex-col justify-betweens w-3/12 h-11/12 m-2"
+      className="flex flex-col justify-betweens w-3/12 h-11/12 gap-4"
       onClick={HandleClick}
     >
       <Controls />
 
-      <div className="overflow-y-auto w-full overscroll-non">
+      <div className="overflow-y-auto w-full overscroll-non grid gap-4">
         {Conteudo.map((post:Post, id:any) => {
           return (
             <ContentItem
