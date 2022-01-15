@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server/index.js",
+    "dev": "nodemon server/index.js && npm run dev && cd my-app && npm start",
     "start": "node server/index.js",
     "build": "cd my-app && npm install && npm run build",
     "db": "/Users/marcelomarchetto/mongodb/bin/mongod --dbpath=/Users/marcelomarchetto/mongodb-data"

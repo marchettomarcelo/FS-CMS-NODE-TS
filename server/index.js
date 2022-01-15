@@ -10,13 +10,14 @@ app.use(express.static(path.resolve(__dirname, "../my-app/build")));
 app.use(express.json());
 
 // Handle GET requests to /api route
-app.get("/api", (req, res) => {
-  res.json({ message: "Hello from server bitchesssss!" });
+app.get("/onepost", async (req, res) => {
+  const pedido = await Post.findOne({ titulo: req.query.titulo });
+
+  res.json(pedido);
 });
 
 //Create a new post endpoint
 app.post("/post", async (req, res) => {
-  console.log(req.body);
   const post = new Post(req.body);
   try {
     await post.save();
@@ -32,25 +33,20 @@ app.patch("/update-posts", async (req, res) => {
   for (let i = 0; i < dataToUpdateDatabase.length; i++) {
     const { _id, titulo, conteudo } = dataToUpdateDatabase[i];
 
-    if (!_id) {
-      const NewPost = new Post({ titulo, conteudo });
-      try {
-        await NewPost.save();
-      } catch (e) {
-        res.status(400).send(e.message);
-      }
-    } else {
-      try {
-        await Post.findByIdAndUpdate({ _id }, { titulo, conteudo });
-      } catch (e) {
-        res.status(400).send(e.message);
-      }
+    try {
+      const tituloFormatado = titulo.replaceAll(" ", "-");
+
+      await Post.findByIdAndUpdate(
+        { _id },
+        {
+          titulo: tituloFormatado,
+          conteudo,
+        }
+      );
+    } catch (e) {
+      res.status(400).send(e.message);
     }
   }
-
-  // Not deleting the whole database
-  // const post = await Post.find({});
-
   res.send("deu certo men");
 });
 

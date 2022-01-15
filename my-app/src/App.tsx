@@ -18,9 +18,20 @@ function App() {
   async function fetchData(conteudoIndex:number = 0) {
     try {
       const newlyFetchedConteudo = await axios.get("/post");
+
+      const dat:Conteudo = newlyFetchedConteudo.data
+      const formatedNewlyFetchedConteudo:Conteudo = dat.map(({conteudo, _id, __v, titulo}:Post)=>{
+        return {
+          conteudo,
+          _id,
+          __v,
+          titulo : titulo.replaceAll("-", " ")
+        }
+
+      })
       
-      setEditingNow(newlyFetchedConteudo.data[conteudoIndex]);
-      setConteudo(newlyFetchedConteudo.data);
+      setEditingNow(formatedNewlyFetchedConteudo[conteudoIndex]);
+      setConteudo(formatedNewlyFetchedConteudo);
     } catch (e) {
       console.log(e);
     }
@@ -45,13 +56,13 @@ function App() {
     };
 
     const NewContentItemCreated = async () => {
-  
       var titulo = UniqueNewPostTitle(GetTitulos(conteudo));
       try{
         await axios.post("/post", {
           titulo,
           conteudo: "New frontiers, new opportunities"
         })
+        console.log("oi")
       }catch(e){
         console.log(e)
       }
