@@ -8,4 +8,5 @@ const Post = mongoose.model("Posts", {
   conteudo: { type: String },
 });
 
-module.exports = Post;
+export default Post
+
