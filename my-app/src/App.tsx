@@ -15,7 +15,9 @@ function App() {
   const [conteudo, setConteudo] = useState<Conteudo>([{ titulo: "", conteudo: "", _id: "0", __v:0 }]);
   const [editingNow, setEditingNow] = useState<Post>({ titulo: "", conteudo: "", _id: "0", __v:0 });
   
-  async function fetchData(conteudoIndex:number = 0) {
+
+  
+  async function fetchData(conteudoIndex:number = 0, shouldSetEditingNow:boolean = true) {
     try {
       const newlyFetchedConteudo = await axios.get("/post");
 
@@ -29,9 +31,10 @@ function App() {
         }
 
       })
-      
-      setEditingNow(formatedNewlyFetchedConteudo[conteudoIndex]);
       setConteudo(formatedNewlyFetchedConteudo);
+      if(shouldSetEditingNow){
+        setEditingNow(formatedNewlyFetchedConteudo[conteudoIndex]);
+      } 
     } catch (e) {
       console.log(e);
     }
@@ -55,6 +58,7 @@ function App() {
       setEditingNow(conteudo[e]);
     };
 
+
     const NewContentItemCreated = async () => {
       var titulo = UniqueNewPostTitle(GetTitulos(conteudo));
       try{
@@ -62,11 +66,16 @@ function App() {
           titulo,
           conteudo: "New frontiers, new opportunities"
         })
-        console.log("oi")
       }catch(e){
         console.log(e)
+        return
       }
-      fetchData()
+      await fetchData(conteudo.length, true)
+
+      // ChangeEditingNow(conteudo.length)
+
+      // setEditingNow(conteudo[conteudo.length])
+      // setEditingNow(conteudo[conteudo.length-1])
     };
 
   const postFoiEditado = (postEditado:Post) => {
@@ -85,6 +94,7 @@ function App() {
 
     } catch (e) {
       console.log(e)
+      return
     }
   }
 
@@ -99,6 +109,7 @@ function App() {
       
     } catch (e) {
       console.log(e)
+      return
     }
 
   }

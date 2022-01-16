@@ -35,7 +35,7 @@ export default function ContentBar({conteudo, clickedChild, NewContentItemCreate
   
   return (
     <div
-      className="flex flex-col justify-betweens w-3/12 h-11/12 gap-4"
+      className="flex flex-col justify-betweens w-3/12 min-w-[180px] h-11/12 gap-4"
       onClick={HandleClick}
     >
       <Controls />

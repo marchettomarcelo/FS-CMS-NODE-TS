@@ -30,7 +30,7 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow }: C
   return (
     <div
       className="flex flex-col border-4 border-black border-solid 
-    w-9/12 h-11/12 rounded shadow-2xl p-4 gap-4"
+    w-9/12  h-11/12 rounded shadow-2xl p-4 gap-4 "
     >
       <textarea
         className="text-5xl font-extrabold  p-2

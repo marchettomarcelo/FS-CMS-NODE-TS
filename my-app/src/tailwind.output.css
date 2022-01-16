@@ -704,4 +704,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   .xl\:flex-row {
     flex-direction: row;
   }
+
+  .xl\:bg-red-800 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(153 27 27 / var(--tw-bg-opacity));
+  }
 }

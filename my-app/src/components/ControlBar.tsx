@@ -6,12 +6,12 @@ export default function Controls() {
   const id2:PossibleControlBarIds = "Save Changes"
   
   return (
-    <div className="flex flex-col gap-4 xl:flex-row justify-between w-11/12">
+    <div className="flex flex-col gap-4 xl:flex-row justify-between  w-11/12">
       <div
         id="Controls"
         className="border-4 bg-green-400 border-black border-solid 
           rounded shadow-lg  hover:bg-green-500 
-          active:bg-green-600 cursor-pointer p-3
+          active:bg-green-600 cursor-pointer p-3 
           "
       >
         <h3 id={id1} className="text-2xl font-bold text-center">
