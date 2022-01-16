@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server/index.js && npm run dev && cd my-app && npm start",
+    "dev": "ts-node-dev --respawn server/index.ts",
     "start": "node dist/index.js",
     "build": "cd my-app && npm install && npm run build",
     "db": "/Users/marcelomarchetto/mongodb/bin/mongod --dbpath=/Users/marcelomarchetto/mongodb-data"
@@ -15,7 +15,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.2",
-    "mongoose": "^6.1.6"
+    "mongoose": "^6.1.6",
+    "ts-node-dev": "^1.1.8"
   },
   "engines": {
     "node": "16.4.0"
