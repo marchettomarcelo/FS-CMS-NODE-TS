@@ -514,6 +514,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 91.666667%;
 }
 
+.min-w-\[180px\] {
+  min-width: 180px;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }
@@ -703,10 +707,5 @@ Ensure the default browser behavior of the `hidden` attribute.
 @media (min-width: 1280px) {
   .xl\:flex-row {
     flex-direction: row;
-  }
-
-  .xl\:bg-red-800 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(153 27 27 / var(--tw-bg-opacity));
   }
 }

@@ -19,4 +19,8 @@ interface CanvaProps{
     editingNow: Post,
     postFoiEditado: (post: Post) =>void
 }
-  
+
+export type PossibleControlBarIds = "Controls" | "Save Changes" | string
+
+
+

@@ -15,14 +15,12 @@ function App() {
   const [conteudo, setConteudo] = useState<Conteudo>([{ titulo: "", conteudo: "", _id: "0", __v:0 }]);
   const [editingNow, setEditingNow] = useState<Post>({ titulo: "", conteudo: "", _id: "0", __v:0 });
   
-
-  
-  async function fetchData(conteudoIndex:number = 0, shouldSetEditingNow:boolean = true) {
+  async function fetchDataAndSetEditingNow(conteudoIndex:number = 0) {
     try {
-      const newlyFetchedConteudo = await axios.get("/post");
+      const {data} = await axios.get("/post");
 
-      const dat:Conteudo = newlyFetchedConteudo.data
-      const formatedNewlyFetchedConteudo:Conteudo = dat.map(({conteudo, _id, __v, titulo}:Post)=>{
+      const newlyFetchedConteudo:Conteudo = data
+      const formatedNewlyFetchedConteudo:Conteudo = newlyFetchedConteudo.map(({conteudo, _id, __v, titulo}:Post)=>{
         return {
           conteudo,
           _id,
@@ -31,17 +29,17 @@ function App() {
         }
 
       })
+
       setConteudo(formatedNewlyFetchedConteudo);
-      if(shouldSetEditingNow){
-        setEditingNow(formatedNewlyFetchedConteudo[conteudoIndex]);
-      } 
+      setEditingNow(formatedNewlyFetchedConteudo[conteudoIndex]);
+      
     } catch (e) {
       console.log(e);
     }
   }
 
   useEffect(() => {
-    fetchData();
+    fetchDataAndSetEditingNow();
   }, []);
 
   // State of the post beeing edited
@@ -70,12 +68,7 @@ function App() {
         console.log(e)
         return
       }
-      await fetchData(conteudo.length, true)
-
-      // ChangeEditingNow(conteudo.length)
-
-      // setEditingNow(conteudo[conteudo.length])
-      // setEditingNow(conteudo[conteudo.length-1])
+      fetchDataAndSetEditingNow(conteudo.length)
     };
 
   const postFoiEditado = (postEditado:Post) => {
@@ -90,7 +83,7 @@ function App() {
     try {
       await axios.patch("/update-posts", conteudo )
       const indexEditingNow = conteudo.indexOf(editingNow)
-      fetchData(indexEditingNow)
+      fetchDataAndSetEditingNow(indexEditingNow)
 
     } catch (e) {
       console.log(e)
@@ -105,8 +98,9 @@ function App() {
     }
     try {
       await axios.delete(`/post/${editingNow._id}`)
-      fetchData()  
       
+      const index = conteudo.indexOf(editingNow)
+      fetchDataAndSetEditingNow(index === 0 ? 0 :  index -1)
     } catch (e) {
       console.log(e)
       return
@@ -115,7 +109,7 @@ function App() {
   }
 
   return (
-    <div className=" h-screen w-screen overflow-hidden flex p-4 flex-row">
+    <div className="h-screen w-screen overflow-hidden flex p-4 flex-row">
       <ContentBar
         conteudo={conteudo}
         clickedChild={clickedChild}
