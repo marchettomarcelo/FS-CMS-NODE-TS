@@ -109,7 +109,9 @@ function App() {
   }
 
   return (
-    <div className="h-screen w-screen overflow-hidden flex p-4 flex-row">
+    <>
+      <div className="h-screen w-screen bg-gray-500/50 absolute z-50 "/>
+      <div className="h-screen w-screen overflow-hidden flex p-4 flex-row">
       <ContentBar
         conteudo={conteudo}
         clickedChild={clickedChild}
@@ -118,6 +120,7 @@ function App() {
       />
       <Canva editingNow={editingNow} postFoiEditado={postFoiEditado} deleteEditingNow={deleteEditingNow} />
     </div>
+    </>
   );
 }
 
