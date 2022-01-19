@@ -8,15 +8,18 @@ import GetTitulos from "./utils/GetTitulos";
 import UniqueNewPostTitle from "./utils/UniqueNewPostTitle";
 import axios from 'axios';
 import { Conteudo, Post } from './react-app-env';
+import loadingSVG from "./assets/loadingSVG.svg"
 
 function App() {
   //Create the api later
 
   const [conteudo, setConteudo] = useState<Conteudo>([{ titulo: "", conteudo: "", _id: "0", __v:0 }]);
   const [editingNow, setEditingNow] = useState<Post>({ titulo: "", conteudo: "", _id: "0", __v:0 });
-  
+  const [loading, setLoading] = useState<boolean>(false)
+
   async function fetchDataAndSetEditingNow(conteudoIndex:number = 0) {
     try {
+      setLoading(true)
       const {data} = await axios.get("/post");
 
       const newlyFetchedConteudo:Conteudo = data
@@ -32,6 +35,10 @@ function App() {
 
       setConteudo(formatedNewlyFetchedConteudo);
       setEditingNow(formatedNewlyFetchedConteudo[conteudoIndex]);
+      setTimeout(() => {
+        setLoading(false)
+        
+      }, 200);
       
     } catch (e) {
       console.log(e);
@@ -110,7 +117,12 @@ function App() {
 
   return (
     <>
-      <div className="h-screen w-screen bg-gray-500/50 absolute z-50 "/>
+      {loading && 
+        <div className="h-screen w-screen backdrop-blur-sm absolute z-50 flex items-center justify-center"> 
+          <img src={loadingSVG} alt="loading" className="w-1/6"/>
+        </div>}
+       
+
       <div className="h-screen w-screen overflow-hidden flex p-4 flex-row">
       <ContentBar
         conteudo={conteudo}
