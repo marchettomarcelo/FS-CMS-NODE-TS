@@ -24,6 +24,7 @@ export default function Controls() {
 
   const id1:PossibleControlBarIds = "Create New Post"
   const id2:PossibleControlBarIds = "Save Changes"
+  const id3:PossibleControlBarIds = "Publicar site"
 
   return (
     <div className="grid grid-cols-2 gap-4 xl:flex-row justify-between  w-11/12">
@@ -44,11 +45,10 @@ export default function Controls() {
         nome="Salvar Mudanças"
       />
       <ControlButton 
-        id={id2} 
+        id={id3} 
         clas="border-4 bg-orange-400 border-black border-solid 
         rounded shadow-lg  hover:bg-orange-500 
         active:bg-orange-600 cursor-pointer p-3 flex items-center"
-        
         nome="Publicar Site"
       />
 

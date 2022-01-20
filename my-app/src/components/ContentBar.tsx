@@ -3,7 +3,7 @@ import { Conteudo, Post, ContentBarProps, PossibleControlBarIds  } from "../reac
 import ContentItem from "./ContentItem";
 import Controls from "./ControlBar";
 
-export default function ContentBar({conteudo, clickedChild, NewContentItemCreated, saveChanges}: ContentBarProps) {
+export default function ContentBar({conteudo, clickedChild, NewContentItemCreated, saveChanges, publishWebsite}: ContentBarProps) {
 
   const Conteudo: Conteudo = [...conteudo]
 
@@ -27,7 +27,11 @@ export default function ContentBar({conteudo, clickedChild, NewContentItemCreate
       // ---make api later---
       saveChanges()
 
-    } else if (ControlBarId) {
+    } else if( ControlBarId === "Publicar site") {
+      publishWebsite()
+
+    } else if (ControlBarId){
+      
       return clickedChild(ControlBarId);
     }
   };
@@ -39,6 +43,7 @@ export default function ContentBar({conteudo, clickedChild, NewContentItemCreate
       onClick={HandleClick}
     >
       <Controls />
+      
 
       <div className="overflow-y-auto w-full overscroll-non grid gap-4">
         {Conteudo.map((post:Post, id:any) => {

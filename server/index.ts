@@ -1,3 +1,4 @@
+import axios from "axios";
 const path = require("path");
 const express = require("express");
 import Post from "./models/post"
@@ -70,6 +71,11 @@ app.get("/post", async (req:any, res:any) => {
     res.status(500).send(e);
   }
 });
+
+app.patch("/publish-website", async (req:any, res:any) => {
+  const response = await axios.get("https://api.vercel.com/v1/integrations/deploy/prj_Bf5RbDJ1DzPSNqlvmWbk2zAkuPjn/KlS72WhKlw")
+  res.status(200).send(response)
+})
 
 // All other GET requests not handled before will return our React app
 app.get("*", (req:any, res:any) => {

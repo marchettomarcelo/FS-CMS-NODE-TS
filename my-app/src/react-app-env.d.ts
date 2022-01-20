@@ -26,6 +26,7 @@ export interface ContentBarProps{
     clickedChild: (childId:string)=>void,
     NewContentItemCreated:()=>void,
     saveChanges: ()=> void,
+    publishWebsite:()=>void
 }
 
-export type PossibleControlBarIds = "Save Changes"| "Create New Post"|string
+export type PossibleControlBarIds = "Save Changes"| "Create New Post"|string| "Publicar site"

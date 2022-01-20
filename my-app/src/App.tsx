@@ -112,7 +112,11 @@ function App() {
       console.log(e)
       return
     }
+  }
 
+  const publishWebsite = async ()=>{
+    const {data} = await axios.patch("/publish-website")
+    console.log(data)
   }
 
   return (
@@ -125,6 +129,7 @@ function App() {
 
       <div className="h-screen w-screen overflow-hidden flex p-4 flex-row">
       <ContentBar
+        publishWebsite={publishWebsite}
         conteudo={conteudo}
         clickedChild={clickedChild}
         NewContentItemCreated={NewContentItemCreated}
