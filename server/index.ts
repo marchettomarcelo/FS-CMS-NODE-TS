@@ -73,8 +73,14 @@ app.get("/post", async (req:any, res:any) => {
 });
 
 app.patch("/publish-website", async (req:any, res:any) => {
-  const response = await axios.get("https://api.vercel.com/v1/integrations/deploy/prj_Bf5RbDJ1DzPSNqlvmWbk2zAkuPjn/KlS72WhKlw")
-  res.status(200).send(response)
+  try{
+    const response = await axios.get("https://api.vercel.com/v1/integrations/deploy/prj_Bf5RbDJ1DzPSNqlvmWbk2zAkuPjn/KlS72WhKlw")
+    res.json(response.data)
+    // res.status(201).send(response)
+
+  }catch(e:any){
+    res.status(201).send(e.message)
+  }
 })
 
 // All other GET requests not handled before will return our React app
