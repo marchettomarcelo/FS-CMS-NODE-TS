@@ -5,7 +5,7 @@ mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true });
 
 const Post = mongoose.model("Posts", {
   titulo: { type: String, required: true, trim: true },
-  conteudo: { type: String },
+  conteudo: { type: String, required: true },
 });
 
 export default Post

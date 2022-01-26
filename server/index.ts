@@ -84,7 +84,11 @@ app.get("/publish-website", async (req:any, res:any) => {
   const testPost = crypto.randomBytes(20)
   const testPostString = testPost.toString("hex")
 
-  const newPost = await new Post({titulo: testPostString})
+  const newPost = await new Post({
+    titulo: testPostString, 
+    conteudo:  "Descição do post: " + testPost
+  })
+  
   try{
     await newPost.save() 
     // console.log(ne)
