@@ -4,6 +4,7 @@ const express = require("express");
 import Post from "./models/post"
 import StatusFinder from "./utils/StatusFinder";
 require("mongoose");
+import crypto from "crypto"
 
 
 //TYPESCRIPT TEST FILE
@@ -77,33 +78,30 @@ app.get("/post", async (req:any, res:any) => {
   }
 });
 
-app.patch("/publish-website", async (req:any, res:any) => {
+app.get("/publish-website", async (req:any, res:any) => {
+
+  res.send("publicando")
+  const testPost = crypto.randomBytes(20)
+  const testPostString = testPost.toString("hex")
+
+  const newPost = await new Post({titulo: testPostString})
   try{
-    const response = await axios.get("https://api.vercel.com/v1/integrations/deploy/prj_Bf5RbDJ1DzPSNqlvmWbk2zAkuPjn/KlS72WhKlw")
-    res.json(response.data)
-    // res.status(201).send(response)
+    const ne = await newPost.save() 
+    console.log(ne)
+
+    await axios.get("https://api.vercel.com/v1/integrations/deploy/prj_Bf5RbDJ1DzPSNqlvmWbk2zAkuPjn/KlS72WhKlw")
+    
+    const status = await StatusFinder(testPostString)
+    await Post.findOneAndDelete({titulo: testPostString})
+
+    res.status(200).send(status)
+  
+    
 
   }catch(e:any){
     res.status(201).send(e.message)
   }
 })
-
-// //existente
-// const marcelo = await StatusFinder()
-//     console.log(marcelo.status)
-//     res.send(marcelo.status)
-
-
-app.get("/status-finder", async (req:any, res:any) => {
-  try {
-    const novo = await StatusFinder()
-    res.send(novo)
-
-  } catch (e:any) {
-    console.log("marcelo")
-    res.status(500).send(e.message);
-  }
-});
 
 // All other GET requests not handled before will return our React app
 app.get("*", (req:any, res:any) => {
