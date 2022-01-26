@@ -2,6 +2,7 @@ import axios from "axios";
 const path = require("path");
 const express = require("express");
 import Post from "./models/post"
+import StatusFinder from "./utils/StatusFinder";
 require("mongoose");
 
 
@@ -63,6 +64,10 @@ app.delete("/post/:_id", async (req:any, res:any) => {
   }
 });
 
+app.get("/", (req:any, res:any)=>{
+  res.send("opa")
+})
+
 app.get("/post", async (req:any, res:any) => {
   try {
     const post = await Post.find({});
@@ -82,6 +87,23 @@ app.patch("/publish-website", async (req:any, res:any) => {
     res.status(201).send(e.message)
   }
 })
+
+// //existente
+// const marcelo = await StatusFinder()
+//     console.log(marcelo.status)
+//     res.send(marcelo.status)
+
+
+app.get("/status-finder", async (req:any, res:any) => {
+  try {
+    const novo = await StatusFinder()
+    res.send(novo)
+
+  } catch (e:any) {
+    console.log("marcelo")
+    res.status(500).send(e.message);
+  }
+});
 
 // All other GET requests not handled before will return our React app
 app.get("*", (req:any, res:any) => {
