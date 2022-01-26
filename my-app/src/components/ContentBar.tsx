@@ -33,7 +33,10 @@ export default function ContentBar({
     } else if( ControlBarId === "Publicar site") {
       publishWebsite()
 
-    } else if (ControlBarId){
+    } else if( ControlBarId === "Visitar site") {
+      window.open("https://cms-client.vercel.app/posts")
+
+    }else if (ControlBarId){
       
       return clickedChild(ControlBarId);
     }

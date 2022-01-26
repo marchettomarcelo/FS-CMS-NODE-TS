@@ -30,4 +30,4 @@ export interface ContentBarProps{
     publishWebsite:()=>void
 }
 
-export type PossibleControlBarIds = "Save Changes"| "Create New Post"|string| "Publicar site"
+export type PossibleControlBarIds = "Save Changes"| "Create New Post"|string| "Publicar site"|"Visitar site"

@@ -1,5 +1,3 @@
-import { useState } from "react"
-import { useEffect } from "react"
 import {PossibleControlBarIds } from "../react-app-env"
 
 interface ControlButtonProps{
@@ -26,14 +24,12 @@ export default function Controls({publishButtonState}:any) {
   const id1:PossibleControlBarIds = "Create New Post"
   const id2:PossibleControlBarIds = "Save Changes"
   const id3:PossibleControlBarIds = "Publicar site"
+  const id4:PossibleControlBarIds = "Visitar site"
 
-  const [but, setBut] = useState("default")
 
-  useEffect(()=>{
-    setBut(publishButtonState)
-  }, [publishButtonState])
+  let publishButton
 
-  let publishButton = <h1>o</h1>
+  let but = publishButtonState
 
   if(but === "default"){
     publishButton = <ControlButton 
@@ -86,6 +82,16 @@ export default function Controls({publishButtonState}:any) {
         
         nome="Salvar Mudanças"
       />
+      
+        <ControlButton 
+          id={id4} 
+          clas="border-4  border-black border-solid 
+          rounded shadow-lg  
+          cursor-pointer p-3 flex items-center"
+          nome="Visitar site"
+        />
+      
+      
       {publishButton}
 
     </div>
