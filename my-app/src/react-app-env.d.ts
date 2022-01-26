@@ -23,6 +23,7 @@ export interface CanvaProps{
 
 export interface ContentBarProps{
     conteudo:Conteudo,
+    publishButtonState: string
     clickedChild: (childId:string)=>void,
     NewContentItemCreated:()=>void,
     saveChanges: ()=> void,

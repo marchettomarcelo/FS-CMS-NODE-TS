@@ -9,6 +9,7 @@ import UniqueNewPostTitle from "./utils/UniqueNewPostTitle";
 import axios from 'axios';
 import { Conteudo, Post } from './react-app-env';
 import loadingSVG from "./assets/loadingSVG.svg"
+import Sleep from "./utils/Sleep"
 
 function App() {
   //Create the api later
@@ -16,6 +17,7 @@ function App() {
   const [conteudo, setConteudo] = useState<Conteudo>([{ titulo: "", conteudo: "", _id: "0", __v:0 }]);
   const [editingNow, setEditingNow] = useState<Post>({ titulo: "", conteudo: "", _id: "0", __v:0 });
   const [loading, setLoading] = useState<boolean>(false)
+  const [publishButtonState, setPublishButtonState] = useState<"loading"|"default"|"success">("default")
 
   async function fetchDataAndSetEditingNow(conteudoIndex:number = 0) {
     try {
@@ -115,8 +117,16 @@ function App() {
   }
 
   const publishWebsite = async ()=>{
-    const {data} = await axios.patch("/publish-website")
+    if(publishButtonState === "loading" || publishButtonState === "success" ){
+      return
+    }
+    setPublishButtonState("loading")
+    const data = await axios.get("/publish-website")
     console.log(data)
+    setPublishButtonState("success")
+    await Sleep(5000)
+    setPublishButtonState("default")
+
   }
 
   return (
@@ -130,6 +140,8 @@ function App() {
       <div className="h-screen w-screen overflow-hidden flex p-4 flex-row">
       <ContentBar
         publishWebsite={publishWebsite}
+        publishButtonState={publishButtonState}
+
         conteudo={conteudo}
         clickedChild={clickedChild}
         NewContentItemCreated={NewContentItemCreated}

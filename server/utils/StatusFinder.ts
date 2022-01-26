@@ -1,7 +1,8 @@
-var request = require('request');
+// var request = require('request');
 import axios from "axios";
+//---------------------------VENCEDOR---------------------------
 
-export default async function StatusFinder( postTitle:string, requestInterval:number = 3000){
+export default async function StatusFinder( postTitle:string){
 
     let url = `https://cms-client.vercel.app/posts/${postTitle}`
     console.log(url)
@@ -12,10 +13,7 @@ export default async function StatusFinder( postTitle:string, requestInterval:nu
 
     }catch(e: any){
         console.log(e.response.status)
-
-        setTimeout(()=>{
-            return StatusFinder(postTitle)
-        }, requestInterval)
+        return e.response.status
     }
     
     

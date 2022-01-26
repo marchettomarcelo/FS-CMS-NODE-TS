@@ -3,7 +3,10 @@ import { Conteudo, Post, ContentBarProps, PossibleControlBarIds  } from "../reac
 import ContentItem from "./ContentItem";
 import Controls from "./ControlBar";
 
-export default function ContentBar({conteudo, clickedChild, NewContentItemCreated, saveChanges, publishWebsite}: ContentBarProps) {
+export default function ContentBar({
+  conteudo, clickedChild, 
+  NewContentItemCreated, saveChanges, 
+  publishWebsite, publishButtonState}: ContentBarProps) {
 
   const Conteudo: Conteudo = [...conteudo]
 
@@ -11,9 +14,9 @@ export default function ContentBar({conteudo, clickedChild, NewContentItemCreate
 
   //------------------------Create new post function------------------------
   const CreateNewPost = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    // messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     NewContentItemCreated();
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    // messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   // alerts the parent sends the id of the child if clicked
@@ -42,7 +45,7 @@ export default function ContentBar({conteudo, clickedChild, NewContentItemCreate
       className="flex flex-col justify-betweens w-3/12 min-w-[180px] h-11/12 gap-4"
       onClick={HandleClick}
     >
-      <Controls />
+      <Controls publishButtonState={publishButtonState}/>
       
 
       <div className="overflow-y-auto w-full overscroll-non grid gap-4">

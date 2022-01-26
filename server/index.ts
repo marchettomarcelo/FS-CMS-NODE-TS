@@ -92,20 +92,30 @@ app.get("/publish-website", async (req:any, res:any) => {
   try{
     await newPost.save() 
     await axios.get("https://api.vercel.com/v1/integrations/deploy/prj_Bf5RbDJ1DzPSNqlvmWbk2zAkuPjn/KlS72WhKlw")
-    
-    try {
-      await StatusFinder(testPostString)
-      return res.status(200).send({url: testPostString, st: status})
-      
-    } catch (error) {
-      return res.status(400).send(error)
-      
-    }
-    // await Post.findOneAndDelete({titulo: testPostString})    
-
+          
   }catch(e:any){
     return res.status(401).send(e.message)
   }
+  
+//------funcionando-------
+
+function sleep(ms:number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+let status:number = 404
+for(let i = 0; i< 80; i++){
+  await sleep(4000)
+  status = await StatusFinder(testPostString)
+  if (status === 200){
+    break
+  }
+}
+
+await Post.findOneAndDelete({titulo: testPostString})    
+res.status(200).send("Publicado com sucesso!")
+
+  
 })
 
 // All other GET requests not handled before will return our React app
