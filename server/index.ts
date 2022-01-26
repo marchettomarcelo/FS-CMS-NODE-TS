@@ -86,24 +86,31 @@ app.get("/publish-website", async (req:any, res:any) => {
 
   const newPost = await new Post({
     titulo: testPostString, 
-    conteudo:  "Descição do post: " + testPost
+    conteudo:  "Descição do post: " + testPostString
   })
-  
+
   try{
     await newPost.save() 
-    // console.log(ne)
-
     await axios.get("https://api.vercel.com/v1/integrations/deploy/prj_Bf5RbDJ1DzPSNqlvmWbk2zAkuPjn/KlS72WhKlw")
     
-    const status = await StatusFinder(testPostString)
+    
+    const status:any = await StatusFinder(testPostString).then(()=>{
+      return res.status(200).send({url: testPostString, st: status})
+      
+    }).catch((e)=>{
+      return res.status(400).send(e)
+
+    })
+    
+  
+    
     // await Post.findOneAndDelete({titulo: testPostString})
 
-    res.status(200).send({url: testPostString, st: status})
   
     
 
   }catch(e:any){
-    res.status(201).send(e.message)
+    return res.status(401).send(e.message)
   }
 })
 
