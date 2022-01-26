@@ -80,21 +80,21 @@ app.get("/post", async (req:any, res:any) => {
 
 app.get("/publish-website", async (req:any, res:any) => {
 
-  res.send("publicando")
+  // res.send("publicando")
   const testPost = crypto.randomBytes(20)
   const testPostString = testPost.toString("hex")
 
   const newPost = await new Post({titulo: testPostString})
   try{
-    const ne = await newPost.save() 
-    console.log(ne)
+    await newPost.save() 
+    // console.log(ne)
 
     await axios.get("https://api.vercel.com/v1/integrations/deploy/prj_Bf5RbDJ1DzPSNqlvmWbk2zAkuPjn/KlS72WhKlw")
     
     const status = await StatusFinder(testPostString)
-    await Post.findOneAndDelete({titulo: testPostString})
+    // await Post.findOneAndDelete({titulo: testPostString})
 
-    res.status(200).send(status)
+    res.status(200).send({url: testPostString, st: status})
   
     
 
