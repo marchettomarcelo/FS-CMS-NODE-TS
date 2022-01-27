@@ -52,7 +52,7 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow }: C
           name="titulo"
           id="titulo"
           rows={2}
-          value={editingNowInCanva.titulo}
+          value={editingNowInCanva.titulo ? editingNowInCanva.titulo: ""}
           onChange={HandleTypeChanges}
         />
         <textarea
@@ -65,16 +65,8 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow }: C
           id="conteudo"
           rows={5}
           onChange={HandleTypeChanges}
-          value={editingNowInCanva.conteudo}
+          value={editingNowInCanva.conteudo?editingNowInCanva.conteudo: "" }
         />
-
-        <h1>oi</h1>
-        <h1>oi</h1>
-        <h1>oi</h1>
-        <h1>oi</h1>
-        <h1>oi</h1>
-        <h1>oi</h1>
-        <h1>oi</h1>
       </div>
       
       <div className=" bg-gray-300 border-t-4 mx-0 border-solid border-black h-20 w-full items-center p-4
