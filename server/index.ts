@@ -82,7 +82,7 @@ app.get("/publish-website", async (req:any, res:any) => {
 
   // res.send("publicando")
   const testPost = crypto.randomBytes(20)
-  const testPostString = testPost.toString("hex")
+  const testPostString = `00000${testPost.toString("hex")}00000`
 
   const newPost = await new Post({
     titulo: testPostString, 
