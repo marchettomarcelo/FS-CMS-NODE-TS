@@ -49,6 +49,8 @@ export default function ContentBar({
       onClick={HandleClick}
     >
       <Controls publishButtonState={publishButtonState}/>
+
+      <hr className=" h-1 border border-black rounded-sm w-11/12 my-2 bg-black "/>
       
 
       <div className="overflow-y-auto w-full overscroll-non grid gap-4">
@@ -59,6 +61,7 @@ export default function ContentBar({
               key={id}
               titulo={post.titulo}
               conteudo={post.conteudo}
+              publishOnNextBuild={post.publishOnNextBuild}
             />
           );
         })}

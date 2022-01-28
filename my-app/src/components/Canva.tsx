@@ -72,7 +72,7 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow }: C
         />
       </div>
       
-      <div className=" bg-gray-300 border-t-4 mx-0 border-solid border-black h-20 w-full items-center p-4
+      <div className=" bg-[#EDE1D4] border-4 m-2 border-solid border-black rounded h-20 w-auto items-center p-4
       flex bottom-1 mt-auto">
       
       
@@ -84,12 +84,22 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow }: C
 
 
   
+        {/* <svg xmlns="http://www.w3.org/2000/svg"
+         className="w-14 h-14 cursor-pointer ml-auto" 
+         fill="none" 
+         viewBox="0 0 24 24" 
+         stroke="#ff000d"
+         onClick={deleteEditingNow}
+         >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg> */}
 
-        <img src={require("../assets/X-cross.png")} 
-        alt="Close icon" 
-        className="w-14 h-14 cursor-pointer ml-auto"
+        <svg xmlns="http://www.w3.org/2000/svg" 
+        className="w-12 h-12 cursor-pointer ml-auto" 
         onClick={deleteEditingNow}
-        />
+        fill="none" viewBox="0 0 24 24" stroke="#ff000d">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+        </svg>
 
       </div>
       

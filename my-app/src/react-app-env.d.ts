@@ -14,6 +14,7 @@ export interface ContentItemProps{
     conteudo:string, 
     id:string, 
     titulo:string
+    publishOnNextBuild:boolean
 }
 
 export interface CanvaProps{

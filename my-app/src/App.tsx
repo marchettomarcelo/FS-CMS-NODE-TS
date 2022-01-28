@@ -138,7 +138,7 @@ function App() {
         </div>}
        
         {/* <button onClick={()=> console.log(conteudo)}>STATE</button> */}
-      <div className="h-screen w-screen overflow-hidden flex p-4 flex-row">
+      <div className="h-screen w-screen overflow-hidden flex p-4 flex-row ]">
       <ContentBar
         publishWebsite={publishWebsite}
         publishButtonState={publishButtonState}

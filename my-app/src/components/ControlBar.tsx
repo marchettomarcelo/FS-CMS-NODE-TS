@@ -15,6 +15,7 @@ function ControlButton({id, clas, nome}: ControlButtonProps){
         <h3 id={id} className="text-xl font-bold text-center">
           {nome}
         </h3>
+        
     </div>  
   )
 }
@@ -68,17 +69,17 @@ export default function Controls({publishButtonState}:any) {
     <div className="grid grid-cols-2 gap-4 xl:flex-row justify-between  w-11/12">
       <ControlButton 
         id={id1} 
-        clas="border-4 bg-yellow-300 border-black border-solid 
-        rounded shadow-lg  hover:bg-yellow-400 
-        active:bg-yellow-500 cursor-pointer p-3 flex items-center"
+        clas="border-4 bg-[#E0A458] border-black border-solid 
+        rounded shadow-lg  hover:bg-[#DC9941] 
+        active:bg-[#CF8626] cursor-pointer p-3 flex items-center"
 
         nome="Adicionar Post "
       />
       <ControlButton 
         id={id2} 
-        clas="border-4 bg-blue-400 border-black border-solid 
-        rounded shadow-lg  hover:bg-blue-500 
-        active:bg-blue-600 cursor-pointer p-3 flex items-center"
+        clas="border-4 bg-[#81A3B1] border-black border-solid 
+        rounded shadow-lg  hover:bg-[#6790A2]
+        active:bg-[#557B8B] cursor-pointer p-3 flex items-center"
         
         nome="Salvar Mudanças"
       />
