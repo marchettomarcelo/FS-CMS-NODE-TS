@@ -14,8 +14,8 @@ import Sleep from "./utils/Sleep"
 function App() {
   //Create the api later
 
-  const [conteudo, setConteudo] = useState<Conteudo>([{ titulo: "", conteudo: "", _id: "0", __v:0 }]);
-  const [editingNow, setEditingNow] = useState<Post>({ titulo: "", conteudo: "", _id: "0", __v:0 });
+  const [conteudo, setConteudo] = useState<Conteudo>([{ titulo: "", conteudo: "", _id: "0", __v:0, publishOnNextBuild: false }]);
+  const [editingNow, setEditingNow] = useState<Post>({ titulo: "", conteudo: "", _id: "0", __v:0, publishOnNextBuild: false });
   const [loading, setLoading] = useState<boolean>(false)
   const [publishButtonState, setPublishButtonState] = useState<"loading"|"default"|"success">("default")
 
@@ -25,8 +25,9 @@ function App() {
       const {data} = await axios.get("/post");
 
       const newlyFetchedConteudo:Conteudo = data
-      const formatedNewlyFetchedConteudo:Conteudo = newlyFetchedConteudo.map(({conteudo, _id, __v, titulo}:Post)=>{
+      const formatedNewlyFetchedConteudo:Conteudo = newlyFetchedConteudo.map(({conteudo, _id, __v, titulo, publishOnNextBuild}:Post)=>{
         return {
+          publishOnNextBuild,
           conteudo,
           _id,
           __v,
@@ -136,7 +137,7 @@ function App() {
           <img src={loadingSVG} alt="loading" className="w-1/6"/>
         </div>}
        
-
+        {/* <button onClick={()=> console.log(conteudo)}>STATE</button> */}
       <div className="h-screen w-screen overflow-hidden flex p-4 flex-row">
       <ContentBar
         publishWebsite={publishWebsite}

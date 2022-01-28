@@ -4,7 +4,8 @@ export interface Post{
     _id: string | undefined,
     titulo: string,
     conteudo: string,
-    __v: number
+    __v: number,
+    publishOnNextBuild: boolean
 }
 
 export type Conteudo = Post[]

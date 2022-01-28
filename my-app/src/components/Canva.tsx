@@ -9,7 +9,8 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow }: C
     _id: undefined,
     titulo: "",
     conteudo: "",
-    __v:0
+    __v:0,
+    publishOnNextBuild: false
   });
 
   //Informing the canva component of the values of the post being edited
@@ -27,15 +28,16 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow }: C
     setEditingNowInCanva(novo);
   };
 
-  // const HandleSwitchChanges(SwitchValue:boolean){
-  //   let novo = {
-  //     ...editingNowInCanva,
-  //     Publish: SwitchValue 
-  //   };
-  //   postFoiEditado(novo);
-  //   setEditingNowInCanva(novo);
+  const HandleSwitchChanges = (SwitchValue:boolean)=>{
 
-  // }
+    let novo = {
+      ...editingNowInCanva,
+      publishOnNextBuild: SwitchValue 
+    };
+    postFoiEditado(novo);
+    setEditingNowInCanva(novo);
+
+  }
 
   return (
     <div
@@ -52,11 +54,12 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow }: C
           name="titulo"
           id="titulo"
           rows={2}
-          value={editingNowInCanva.titulo ? editingNowInCanva.titulo: ""}
+          value={editingNowInCanva.titulo ? editingNowInCanva.titulo: " "}
           onChange={HandleTypeChanges}
         />
-        <textarea
-          className="text-2xl font-extrabold  p-2 w-full
+        
+        <textarea          
+          className="text-2xl font-sans  p-2 w-full whitespace-pre-wrap indent-8
           border border-solid border-gray-300 rounded
           focus:bg-white focus:border-gray-600 focus:outline-none
           transition
@@ -65,7 +68,7 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow }: C
           id="conteudo"
           rows={5}
           onChange={HandleTypeChanges}
-          value={editingNowInCanva.conteudo?editingNowInCanva.conteudo: "" }
+          value={editingNowInCanva.conteudo?editingNowInCanva.conteudo: " " }
         />
       </div>
       
@@ -73,8 +76,11 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow }: C
       flex bottom-1 mt-auto">
       
       
-        <h1 className="mr-2">Desabilitar postagem</h1>
-        <SwitchItem />
+        <h1 className="mr-4 text-lg font-bold">Publicar <br /> este Post</h1>
+        <SwitchItem 
+        HandleSwitchChanges={HandleSwitchChanges}
+        publishOnNextBuild={editingNowInCanva.publishOnNextBuild} 
+        />
 
 
   

@@ -47,7 +47,7 @@ export default function Controls({publishButtonState}:any) {
       clas="border-4 bg-red-600 border-black border-solid 
       rounded shadow-lg  hover:bg-red-500 
       cursor-pointer p-3 flex items-center"
-      nome="Loading"
+      nome="Loading..."
     />
 
   }

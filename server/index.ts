@@ -36,7 +36,7 @@ app.patch("/update-posts", async (req:any, res:any) => {
   const dataToUpdateDatabase = req.body;
 
   for (let i = 0; i < dataToUpdateDatabase.length; i++) {
-    const { _id, titulo, conteudo } = dataToUpdateDatabase[i];
+    const { _id, titulo, conteudo, publishOnNextBuild } = dataToUpdateDatabase[i];
 
     try {
       const tituloFormatado = titulo.replaceAll(" ", "-");
@@ -46,6 +46,7 @@ app.patch("/update-posts", async (req:any, res:any) => {
         {
           titulo: tituloFormatado,
           conteudo,
+          publishOnNextBuild
         }
       );
     } catch (e:any) {
@@ -71,7 +72,16 @@ app.get("/", (req:any, res:any)=>{
 
 app.get("/post", async (req:any, res:any) => {
   try {
-    const post = await Post.find({});
+    const post = await Post.find();
+    res.send(post);
+  } catch (e:any) {
+    res.status(500).send(e);
+  }
+});
+
+app.get("/posts-for-publishing", async (req:any, res:any) => {
+  try {
+    const post = await Post.find({ publishOnNextBuild: true });
     res.send(post);
   } catch (e:any) {
     res.status(500).send(e);
