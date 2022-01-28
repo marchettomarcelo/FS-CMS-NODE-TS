@@ -96,7 +96,8 @@ app.get("/publish-website", async (req:any, res:any) => {
 
   const newPost = await new Post({
     titulo: testPostString, 
-    conteudo:  "Descição do post: " + testPostString
+    conteudo:  "Descição do post: " + testPostString,
+    publishOnNextBuild: true
   })
 
   try{
