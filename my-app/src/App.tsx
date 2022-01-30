@@ -22,10 +22,11 @@ function App() {
   async function fetchDataAndSetEditingNow(conteudoIndex:number = 0) {
     try {
       setLoading(true)
-      const {data} = await axios.get("/post");
 
+      const {data} = await axios.get("/post");
       const newlyFetchedConteudo:Conteudo = data
       const formatedNewlyFetchedConteudo:Conteudo = newlyFetchedConteudo.map(({conteudo, _id, __v, titulo, publishOnNextBuild}:Post)=>{
+        
         return {
           publishOnNextBuild,
           conteudo,
@@ -35,14 +36,9 @@ function App() {
         }
 
       })
-
       setConteudo(formatedNewlyFetchedConteudo);
       setEditingNow(formatedNewlyFetchedConteudo[conteudoIndex]);
-      setTimeout(() => {
-        setLoading(false)
-        
-      }, 200);
-      
+      setLoading(false)
     } catch (e) {
       console.log(e);
     }
@@ -51,6 +47,19 @@ function App() {
   useEffect(() => {
     fetchDataAndSetEditingNow();
   }, []);
+
+
+  const saveChanges = async () => {
+    setLoading(true)
+    try {
+      await axios.patch("/update-posts", conteudo )
+      const indexEditingNow = conteudo.indexOf(editingNow)
+      fetchDataAndSetEditingNow(indexEditingNow)
+    } catch (e) {
+      console.log(e)
+      return
+    }
+  }
 
   // State of the post beeing edited
   const clickedChild = (e:any) => {
@@ -63,12 +72,14 @@ function App() {
         console.log("Altere o título do post atual para mudar de post. Não é possível ter post com títulos iguais");
         return;
       }
+      console.log(conteudo[e])
       setEditingNow(conteudo[e]);
     };
 
 
     const NewContentItemCreated = async () => {
-      var titulo = UniqueNewPostTitle(GetTitulos(conteudo));
+    await saveChanges()
+     var titulo = UniqueNewPostTitle(GetTitulos(conteudo));
       try{
         await axios.post("/post", {
           titulo,
@@ -88,21 +99,10 @@ function App() {
     setConteudo(novo);
   };
 
-  const saveChanges = async () => {
 
-    try {
-      await axios.patch("/update-posts", conteudo )
-      const indexEditingNow = conteudo.indexOf(editingNow)
-      fetchDataAndSetEditingNow(indexEditingNow)
-
-    } catch (e) {
-      console.log(e)
-      return
-    }
-  }
 
   const deleteEditingNow = async () => {
-
+    await saveChanges()
     if (conteudo.length === 1){
       return
     }
@@ -130,6 +130,10 @@ function App() {
 
   }
 
+  const visitWebsite = async ()=>{
+    window.open("https://cms-client.vercel.app/posts")
+  }
+
   return (
     <>
       {loading && 
@@ -137,19 +141,35 @@ function App() {
           <img src={loadingSVG} alt="loading" className="w-1/6"/>
         </div>}
        
-        {/* <button onClick={()=> console.log(conteudo)}>STATE</button> */}
-      <div className="h-screen w-screen overflow-hidden flex p-4 flex-row ]">
-      <ContentBar
-        publishWebsite={publishWebsite}
-        publishButtonState={publishButtonState}
+      
+    { editingNow ? <div className="h-screen w-screen overflow-hidden flex p-4 flex-row">
+        
+        {/* {console.log("Conteudo sendo Logado: ",conteudo)}
+        {console.log("Editing now sendo logadoL: ",editingNow)} */}
 
-        conteudo={conteudo}
-        clickedChild={clickedChild}
-        NewContentItemCreated={NewContentItemCreated}
-        saveChanges={saveChanges}
-      />
-      <Canva editingNow={editingNow} postFoiEditado={postFoiEditado} deleteEditingNow={deleteEditingNow} />
-    </div>
+        <ContentBar
+          visitWebsite={visitWebsite}
+          publishWebsite={publishWebsite}
+          publishButtonState={publishButtonState}
+
+          conteudo={conteudo}
+          clickedChild={clickedChild}
+          NewContentItemCreated={NewContentItemCreated}
+          saveChanges={saveChanges}
+        />
+        <Canva editingNow={editingNow} postFoiEditado={postFoiEditado} deleteEditingNow={deleteEditingNow} />
+      </div>: 
+      
+      <button
+        onClick={()=>{
+          console.log("Conteudo sendo Logado botao: ", conteudo)
+          console.log("Editing now sendo logadoL botao: ", editingNow)
+          
+        }
+      }
+      className="text-5xl m-10 p-4 border border-black"
+      
+      >Clica em mim</button> }
     </>
   );
 }

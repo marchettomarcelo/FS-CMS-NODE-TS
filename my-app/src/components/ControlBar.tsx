@@ -1,3 +1,4 @@
+
 import {PossibleControlBarIds } from "../react-app-env"
 
 interface ControlButtonProps{
@@ -9,9 +10,9 @@ interface ControlButtonProps{
 function ControlButton({id, clas, nome}: ControlButtonProps){
   return(
     <div
-      id="Controls"
+      id={id}
       className={clas}>
-
+        
         <h3 id={id} className="text-xl font-bold text-center">
           {nome}
         </h3>
@@ -84,7 +85,7 @@ export default function Controls({publishButtonState}:any) {
         nome="Salvar Mudanças"
       />
       
-        <ControlButton 
+        <ControlButton
           id={id4} 
           clas="border-4  border-black border-solid 
           rounded shadow-lg  

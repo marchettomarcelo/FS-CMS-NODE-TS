@@ -1,44 +1,31 @@
-import { useEffect, useState } from "react";
-import { Post, CanvaProps } from "../react-app-env";
+import { CanvaProps } from "../react-app-env";
 import SwitchItem from "./SwitchItem"
 
 
 export default function Canva({editingNow, postFoiEditado, deleteEditingNow }: CanvaProps) {
-  //State of the post being currently edited
-  const [editingNowInCanva, setEditingNowInCanva] = useState<Post>({
-    _id: undefined,
-    titulo: " o",
-    conteudo: "",
-    __v:0,
-    publishOnNextBuild: false
-  });
-
-  //Informing the canva component of the values of the post being edited
-  useEffect(() => {
-    setEditingNowInCanva(editingNow);
-  }, [editingNow]);
-
+  
+  
   //notifiing parent component of changes on the current post
   const HandleTypeChanges = async (e:any) => {
     let novo = {
-      ...editingNowInCanva,
+      ...editingNow,
       [e.target.id]: e.target.value,
     };
     postFoiEditado(novo);
-    setEditingNowInCanva(novo);
+    // setEditingNowInCanva(novo);
   };
 
   const HandleSwitchChanges = (SwitchValue:boolean)=>{
 
     let novo = {
-      ...editingNowInCanva,
+      ...editingNow,
       publishOnNextBuild: SwitchValue 
     };
     postFoiEditado(novo);
-    setEditingNowInCanva(novo);
 
   }
 
+  // console.log(editingNow)
   return (
     <div
       className="flex flex-col border-4 border-black border-solid 
@@ -54,7 +41,8 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow }: C
           name="titulo"
           id="titulo"
           rows={2}
-          value={editingNowInCanva.titulo ? editingNowInCanva.titulo: " "}
+          value={editingNow.titulo}
+          
           onChange={HandleTypeChanges}
         />
         
@@ -68,7 +56,7 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow }: C
           id="conteudo"
           rows={5}
           onChange={HandleTypeChanges}
-          value={editingNowInCanva.conteudo?editingNowInCanva.conteudo: " " }
+          value={editingNow.conteudo }
         />
       </div>
       
@@ -79,13 +67,8 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow }: C
         <h1 className="mr-4 text-lg font-bold">Publicar <br /> este Post</h1>
         <SwitchItem 
         HandleSwitchChanges={HandleSwitchChanges}
-        publishOnNextBuild={editingNowInCanva.publishOnNextBuild} 
+        publishOnNextBuild={editingNow.publishOnNextBuild} 
         />
-
-
-  
-      
-
         <svg xmlns="http://www.w3.org/2000/svg" 
         className="w-12 h-12 cursor-pointer ml-auto" 
         onClick={deleteEditingNow}
