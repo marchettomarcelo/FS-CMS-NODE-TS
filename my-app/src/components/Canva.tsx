@@ -7,7 +7,7 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow }: C
   //State of the post being currently edited
   const [editingNowInCanva, setEditingNowInCanva] = useState<Post>({
     _id: undefined,
-    titulo: "",
+    titulo: " o",
     conteudo: "",
     __v:0,
     publishOnNextBuild: false
