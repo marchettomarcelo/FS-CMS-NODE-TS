@@ -4,6 +4,7 @@ import ContentItem from "./ContentItem";
 import Controls from "./ControlBar";
 
 export default function ContentBar({
+  visitWebsite,
   conteudo, clickedChild, 
   NewContentItemCreated, saveChanges, 
   publishWebsite, publishButtonState}: ContentBarProps) {
@@ -35,11 +36,11 @@ export default function ContentBar({
     } else if( ControlBarId === "Publicar site") {
       publishWebsite()
 
-    } else if( ControlBarId === "Visitar site") {
-      console.log("oi")
-      window.open("https://cms-client.vercel.app/posts")      
-
-    }else if (ControlBarId){
+    } 
+    else if( ControlBarId === "Visitar site") {
+      visitWebsite()
+    }
+    else if (ControlBarId){
       
       return clickedChild(ControlBarId);
     }
