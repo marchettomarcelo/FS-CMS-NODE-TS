@@ -19,7 +19,7 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow }: C
   }, [editingNow]);
 
   //notifiing parent component of changes on the current post
-  const HandleTypeChanges = async (e:any) => {
+  const HandleTypeChanges = (e:any) => {
     let novo = {
       ...editingNowInCanva,
       [e.target.id]: e.target.value,
@@ -39,6 +39,15 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow }: C
 
   }
 
+  // const valueValidator = () =>{
+  //   if(editingNowInCanva){
+  //     return editingNowInCanva
+  //   } else{
+  //     return window.location.reload()
+  //   }
+
+  // }
+
   return (
     <div
       className="flex flex-col border-4 border-black border-solid 
@@ -54,7 +63,10 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow }: C
           name="titulo"
           id="titulo"
           rows={2}
-          value={editingNowInCanva.titulo ? editingNowInCanva.titulo: " "}
+
+          // value={editingNowInCanva? editingNowInCanva.titulo : ""}
+          value={editingNowInCanva.titulo}
+          
           onChange={HandleTypeChanges}
         />
         
@@ -68,7 +80,8 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow }: C
           id="conteudo"
           rows={5}
           onChange={HandleTypeChanges}
-          value={editingNowInCanva.conteudo?editingNowInCanva.conteudo: " " }
+          value={editingNowInCanva.conteudo}
+          // value={editingNowInCanva ? editingNowInCanva.conteudo: "" }
         />
       </div>
       
@@ -79,12 +92,9 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow }: C
         <h1 className="mr-4 text-lg font-bold">Publicar <br /> este Post</h1>
         <SwitchItem 
         HandleSwitchChanges={HandleSwitchChanges}
+
         publishOnNextBuild={editingNowInCanva.publishOnNextBuild} 
         />
-
-
-  
-      
 
         <svg xmlns="http://www.w3.org/2000/svg" 
         className="w-12 h-12 cursor-pointer ml-auto" 

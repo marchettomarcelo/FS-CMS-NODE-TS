@@ -90,6 +90,7 @@ export default function Controls({publishButtonState}:any) {
           rounded shadow-lg  
           cursor-pointer p-3 flex items-center"
           nome="Visitar site"
+        
         />
       
       

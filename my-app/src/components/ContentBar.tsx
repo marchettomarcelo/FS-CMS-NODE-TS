@@ -24,7 +24,9 @@ export default function ContentBar({
     const ControlBarId:PossibleControlBarIds = e.target.id
     
     if (ControlBarId === "Create New Post") {
+
       CreateNewPost();
+
     } else if (ControlBarId === "Save Changes") {
 
       // ---make api later---
@@ -34,7 +36,8 @@ export default function ContentBar({
       publishWebsite()
 
     } else if( ControlBarId === "Visitar site") {
-      window.open("https://cms-client.vercel.app/posts")
+      console.log("oi")
+      window.open("https://cms-client.vercel.app/posts")      
 
     }else if (ControlBarId){
       

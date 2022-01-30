@@ -502,9 +502,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin: 1rem;
 }
 
-.mx-0 {
-  margin-left: 0px;
-  margin-right: 0px;
+.m-2 {
+  margin: 0.5rem;
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .mt-auto {
@@ -543,8 +547,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 5rem;
 }
 
-.h-14 {
-  height: 3.5rem;
+.h-12 {
+  height: 3rem;
+}
+
+.h-1 {
+  height: 0.25rem;
+}
+
+.h-6 {
+  height: 1.5rem;
 }
 
 .h-\[38px\] {
@@ -571,8 +583,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 100%;
 }
 
-.w-14 {
-  width: 3.5rem;
+.w-auto {
+  width: auto;
+}
+
+.w-12 {
+  width: 3rem;
 }
 
 .w-3\/12 {
@@ -581,6 +597,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-11\/12 {
   width: 91.666667%;
+}
+
+.w-10\/12 {
+  width: 83.333333%;
+}
+
+.w-2\/12 {
+  width: 16.666667%;
+}
+
+.w-6 {
+  width: 1.5rem;
 }
 
 .w-\[74px\] {
@@ -632,6 +660,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   flex-direction: column;
 }
 
+.content-center {
+  align-content: center;
+}
+
 .items-center {
   align-items: center;
 }
@@ -668,6 +700,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-radius: 0.25rem;
 }
 
+.rounded-sm {
+  border-radius: 0.125rem;
+}
+
 .rounded-full {
   border-radius: 9999px;
 }
@@ -682,10 +718,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .border-2 {
   border-width: 2px;
-}
-
-.border-t-4 {
-  border-top-width: 4px;
 }
 
 .border-solid {
@@ -706,14 +738,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: transparent;
 }
 
-.bg-gray-300 {
+.bg-\[\#EDE1D4\] {
   --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+  background-color: rgb(237 225 212 / var(--tw-bg-opacity));
 }
 
-.bg-red-200 {
+.bg-black {
   --tw-bg-opacity: 1;
-  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
 .bg-orange-400 {
@@ -731,14 +763,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(74 222 128 / var(--tw-bg-opacity));
 }
 
-.bg-yellow-300 {
+.bg-\[\#E0A458\] {
   --tw-bg-opacity: 1;
-  background-color: rgb(253 224 71 / var(--tw-bg-opacity));
+  background-color: rgb(224 164 88 / var(--tw-bg-opacity));
 }
 
-.bg-blue-400 {
+.bg-\[\#81A3B1\] {
   --tw-bg-opacity: 1;
-  background-color: rgb(96 165 250 / var(--tw-bg-opacity));
+  background-color: rgb(129 163 177 / var(--tw-bg-opacity));
 }
 
 .bg-teal-600 {
@@ -882,11 +914,6 @@ body {
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-gray-100:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
-}
-
 .hover\:bg-orange-500:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(249 115 22 / var(--tw-bg-opacity));
@@ -902,14 +929,14 @@ body {
   background-color: rgb(34 197 94 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-yellow-400:hover {
+.hover\:bg-\[\#DC9941\]:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(250 204 21 / var(--tw-bg-opacity));
+  background-color: rgb(220 153 65 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-blue-500:hover {
+.hover\:bg-\[\#6790A2\]:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+  background-color: rgb(103 144 162 / var(--tw-bg-opacity));
 }
 
 .focus\:border-gray-600:focus {
@@ -947,24 +974,19 @@ body {
   background-color: rgb(209 213 219 / var(--tw-bg-opacity));
 }
 
-.active\:bg-gray-200:active {
-  --tw-bg-opacity: 1;
-  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
-}
-
 .active\:bg-orange-600:active {
   --tw-bg-opacity: 1;
   background-color: rgb(234 88 12 / var(--tw-bg-opacity));
 }
 
-.active\:bg-yellow-500:active {
+.active\:bg-\[\#CF8626\]:active {
   --tw-bg-opacity: 1;
-  background-color: rgb(234 179 8 / var(--tw-bg-opacity));
+  background-color: rgb(207 134 38 / var(--tw-bg-opacity));
 }
 
-.active\:bg-blue-600:active {
+.active\:bg-\[\#557B8B\]:active {
   --tw-bg-opacity: 1;
-  background-color: rgb(37 99 235 / var(--tw-bg-opacity));
+  background-color: rgb(85 123 139 / var(--tw-bg-opacity));
 }
 
 @media (min-width: 1280px) {
