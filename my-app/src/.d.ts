@@ -15,9 +15,11 @@ export interface ContentItemProps{
     titulo:string
 }
 
-interface CanvaProps{
+export interface CanvaProps{
     editingNow: Post,
     postFoiEditado: (post: Post) =>void
+    deleteEditingNow: ()=>void
+    sideMenu:boolean,
 }
 
 export type PossibleControlBarIds = "Controls" | "Save Changes" | string

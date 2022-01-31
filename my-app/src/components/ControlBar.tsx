@@ -37,7 +37,7 @@ export default function Controls({publishButtonState}:any) {
     publishButton = <ControlButton 
       id={id3} 
       clas="border-4 bg-orange-400 border-black border-solid 
-      rounded shadow-lg  hover:bg-orange-500 
+      rounded shadow-lg  hover:bg-orange-500 justify-center
       active:bg-orange-600 cursor-pointer p-3 flex items-center"
       nome="Publicar Site"
     />
@@ -47,7 +47,7 @@ export default function Controls({publishButtonState}:any) {
     publishButton = <ControlButton 
       id={id3} 
       clas="border-4 bg-red-600 border-black border-solid 
-      rounded shadow-lg  hover:bg-red-500 
+      rounded shadow-lg  hover:bg-red-500 justify-center
       cursor-pointer p-3 flex items-center"
       nome="Loading..."
     />
@@ -57,7 +57,7 @@ export default function Controls({publishButtonState}:any) {
     publishButton = <ControlButton 
       id={id3} 
       clas="border-4 bg-green-400 border-black border-solid 
-      rounded shadow-lg  hover:bg-green-500 
+      rounded shadow-lg  hover:bg-green-500 justify-center
       cursor-pointer p-3 flex items-center"
       nome="Sucesso!!!"
     />
@@ -67,11 +67,11 @@ export default function Controls({publishButtonState}:any) {
 
 
   return (
-    <div className="grid grid-cols-2 gap-4 xl:flex-row justify-between  w-11/12">
+    <div className="grid grid-cols-1 gap-4 xl:grid-cols-2 justify-between  w-11/12">
       <ControlButton 
         id={id1} 
         clas="border-4 bg-[#E0A458] border-black border-solid 
-        rounded shadow-lg  hover:bg-[#DC9941] 
+        rounded shadow-lg  hover:bg-[#DC9941] justify-center
         active:bg-[#CF8626] cursor-pointer p-3 flex items-center"
 
         nome="Adicionar Post "
@@ -80,7 +80,7 @@ export default function Controls({publishButtonState}:any) {
         id={id2} 
         clas="border-4 bg-[#81A3B1] border-black border-solid 
         rounded shadow-lg  hover:bg-[#6790A2]
-        active:bg-[#557B8B] cursor-pointer p-3 flex items-center"
+        active:bg-[#557B8B] cursor-pointer justify-center flex items-center"
         
         nome="Salvar Mudanças"
       />
@@ -88,7 +88,7 @@ export default function Controls({publishButtonState}:any) {
         <ControlButton
           id={id4} 
           clas="border-4  border-black border-solid 
-          rounded shadow-lg  
+          rounded shadow-lg  justify-center
           cursor-pointer p-3 flex items-center"
           nome="Visitar site"
         

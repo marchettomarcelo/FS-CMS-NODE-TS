@@ -1,6 +1,6 @@
 
 import './App.css';
-import React, { useEffect, useState } from "react";
+import React,  { useEffect, useState } from "react";
 import Canva from "./components/Canva";
 import ContentBar from "./components/ContentBar";
 //import MockData from "./data";
@@ -10,6 +10,8 @@ import axios from 'axios';
 import { Conteudo, Post } from './react-app-env';
 import loadingSVG from "./assets/loadingSVG.svg"
 import Sleep from "./utils/Sleep"
+import useWindowDimensions from './utils/Dimensions';
+import SideBar from './components/SideBar';
 
 function App() {
   //Create the api later
@@ -18,7 +20,9 @@ function App() {
   const [editingNow, setEditingNow] = useState<Post>({ titulo: "", conteudo: "", _id: "0", __v:0, publishOnNextBuild: false });
   const [loading, setLoading] = useState<boolean>(false)
   const [publishButtonState, setPublishButtonState] = useState<"loading"|"default"|"success">("default")
-
+  
+  const [sideMenu, setSideMenu] = useState<boolean>(false)
+  
   async function fetchDataAndSetEditingNow(conteudoIndex:number = 0) {
     try {
       setLoading(true)
@@ -63,6 +67,7 @@ function App() {
 
   // State of the post beeing edited
   const clickedChild = (e:any) => {
+    //add save changes later manin
     const ArrayOftitulos = GetTitulos(conteudo);
     const titulosDuplicados = ArrayOftitulos.filter(
       tituloAtual => tituloAtual === editingNow.titulo
@@ -134,42 +139,51 @@ function App() {
     window.open("https://cms-client.vercel.app/posts")
   }
 
+  const toggleSideMenu = ()=>{
+    setSideMenu(!sideMenu)
+  }
+
+  
+
+  const {width} = useWindowDimensions()
   return (
     <>
       {loading && 
         <div className="h-screen w-screen backdrop-blur-sm absolute z-50 flex items-center justify-center"> 
           <img src={loadingSVG} alt="loading" className="w-1/6"/>
         </div>}
-       
       
-    { editingNow ? <div className="h-screen w-screen overflow-hidden flex p-4 flex-row">
-        
-        {/* {console.log("Conteudo sendo Logado: ",conteudo)}
-        {console.log("Editing now sendo logadoL: ",editingNow)} */}
-
-        <ContentBar
-          visitWebsite={visitWebsite}
-          publishWebsite={publishWebsite}
-          publishButtonState={publishButtonState}
-
-          conteudo={conteudo}
-          clickedChild={clickedChild}
-          NewContentItemCreated={NewContentItemCreated}
-          saveChanges={saveChanges}
-        />
-        <Canva editingNow={editingNow} postFoiEditado={postFoiEditado} deleteEditingNow={deleteEditingNow} />
-      </div>: 
-      
-      <button
-        onClick={()=>{
-          console.log("Conteudo sendo Logado botao: ", conteudo)
-          console.log("Editing now sendo logadoL botao: ", editingNow)
+        <div className="h-screen w-screen overflow-hidden flex p-4 flex-row">   
+            
           
-        }
-      }
-      className="text-5xl m-10 p-4 border border-black"
-      
-      >Clica em mim</button> }
+          <SideBar toggleSideMenu={toggleSideMenu}/>
+        
+          { 
+          
+          sideMenu && <ContentBar
+            visitWebsite={visitWebsite}
+            publishWebsite={publishWebsite}
+            publishButtonState={publishButtonState}
+
+            conteudo={conteudo}
+            clickedChild={clickedChild}
+            NewContentItemCreated={NewContentItemCreated}
+            saveChanges={saveChanges}
+          />
+          }
+          <Canva 
+
+          editingNow={editingNow} 
+          postFoiEditado={postFoiEditado} 
+          deleteEditingNow={deleteEditingNow} 
+          sideMenu={sideMenu}
+          
+          />
+
+
+
+      </div>
+    
     </>
   );
 }

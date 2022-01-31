@@ -25,14 +25,9 @@ export default function ContentBar({
     const ControlBarId:PossibleControlBarIds = e.target.id
     
     if (ControlBarId === "Create New Post") {
-
       CreateNewPost();
-
     } else if (ControlBarId === "Save Changes") {
-
-      // ---make api later---
       saveChanges()
-
     } else if( ControlBarId === "Publicar site") {
       publishWebsite()
 
@@ -49,7 +44,7 @@ export default function ContentBar({
   
   return (
     <div
-      className="flex flex-col justify-betweens w-3/12 min-w-[180px] h-11/12 gap-4"
+      className="xl:flex xl:flex-col xl:justify-betweens xl:w-contbar relative  h-11/12 gap-4"
       onClick={HandleClick}
     >
       <Controls publishButtonState={publishButtonState}/>
