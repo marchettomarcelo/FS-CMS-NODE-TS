@@ -21,7 +21,7 @@ function App() {
   const [loading, setLoading] = useState<boolean>(false)
   const [publishButtonState, setPublishButtonState] = useState<"loading"|"default"|"success">("default")
   
-  const [sideMenu, setSideMenu] = useState<boolean>(false)
+  const [sideMenu, setSideMenu] = useState<boolean>(true)
   
   async function fetchDataAndSetEditingNow(conteudoIndex:number = 0) {
     try {
@@ -144,16 +144,26 @@ function App() {
   }
 
   
-
   const {width} = useWindowDimensions()
+
+  const mainDivStyle = width < 600 && sideMenu? 
+  `h-[90vh] xl:h-screen w-screen 
+  overflow-hidden flex 
+  p-4 pr-0
+  xl:p-4 flex-row` : 
+  `h-[90vh] xl:h-screen w-screen 
+  overflow-hidden flex 
+  p-4 
+  xl:p-4 flex-row`
+
   return (
     <>
       {loading && 
         <div className="h-screen w-screen backdrop-blur-sm absolute z-50 flex items-center justify-center"> 
           <img src={loadingSVG} alt="loading" className="w-1/6"/>
         </div>}
-      
-        <div className="h-screen w-screen overflow-hidden flex p-4 flex-row">   
+    
+        <div className={mainDivStyle}>   
             
           
           <SideBar toggleSideMenu={toggleSideMenu}/>

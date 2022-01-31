@@ -34,7 +34,7 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow, sid
   const {width} = useWindowDimensions()
 
   
-  const cla = `hidden w-full mr-0`
+  const cla = `hidden w-full`
   
 
   // console.log(editingNow)

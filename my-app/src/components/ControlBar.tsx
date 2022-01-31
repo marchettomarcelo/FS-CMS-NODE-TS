@@ -80,7 +80,7 @@ export default function Controls({publishButtonState}:any) {
         id={id2} 
         clas="border-4 bg-[#81A3B1] border-black border-solid 
         rounded shadow-lg  hover:bg-[#6790A2]
-        active:bg-[#557B8B] cursor-pointer justify-center flex items-center"
+        active:bg-[#557B8B] cursor-pointer p-3 justify-center flex items-center"
         
         nome="Salvar Mudanças"
       />

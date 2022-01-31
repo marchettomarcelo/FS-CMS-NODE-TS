@@ -44,7 +44,11 @@ export default function ContentBar({
   
   return (
     <div
-      className="xl:flex xl:flex-col xl:justify-betweens xl:w-contbar relative  h-11/12 gap-4"
+      className="xl:flex xl:flex-col xl:justify-betweens 
+      w-9/12
+      xl:w-contbar relative  h-11/12 gap-4"
+      
+      
       onClick={HandleClick}
     >
       <Controls publishButtonState={publishButtonState}/>
@@ -52,7 +56,7 @@ export default function ContentBar({
       <hr className=" h-1 border border-black rounded-sm w-11/12 my-2 bg-black "/>
       
 
-      <div className="overflow-y-auto w-full overscroll-non grid gap-4">
+      <div className=" overflow-scroll h-full w-full grid gap-4">
         {Conteudo.map((post:Post, id:any) => {
           return (
             <ContentItem
