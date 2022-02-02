@@ -16,7 +16,7 @@ import SideBar from './components/SideBar';
 function App() {
   //Create the api later
 
-  const [conteudo, setConteudo] = useState<Conteudo>([{ titulo: "", conteudo: "", _id: "0", __v:0, publishOnNextBuild: false }]);
+  const [conteudo, setConteudo] = useState<Conteudo>([{ titulo: " ", conteudo: "", _id: "0", __v:0, publishOnNextBuild: false }]);
   const [editingNow, setEditingNow] = useState<Post>({ titulo: "", conteudo: "", _id: "0", __v:0, publishOnNextBuild: false });
   const [loading, setLoading] = useState<boolean>(false)
   const [publishButtonState, setPublishButtonState] = useState<"loading"|"default"|"success">("default")
