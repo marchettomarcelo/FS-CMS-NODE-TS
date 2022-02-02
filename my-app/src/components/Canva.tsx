@@ -55,6 +55,9 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow, sid
           ease-in-out"
           name="titulo"
           id="titulo"
+
+          
+
           rows={2}
           value={editingNow.titulo}
           
@@ -73,6 +76,12 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow, sid
           onChange={HandleTypeChanges}
           value={editingNow.conteudo }
         />
+
+        <div
+        role="textbox"
+        >
+
+        </div>
       </div>
       
       <div className=" bg-[#EDE1D4] border-4 m-2 border-solid border-black rounded h-20 w-auto items-center p-4
