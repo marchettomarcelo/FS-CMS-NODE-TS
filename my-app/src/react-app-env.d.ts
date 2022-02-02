@@ -2,18 +2,19 @@
 
 export interface Post{
     _id: string | undefined,
-    titulo: string,
-    conteudo: string,
+    path: string,
+    info: string,
     __v: number,
     publishOnNextBuild: boolean
+    HTMLContent:string
 }
 
-export type Conteudo = Post[]
+export type allPosts = Post[]
 
 export interface ContentItemProps{
-    conteudo:string, 
+    info:string, 
     id:string, 
-    titulo:string
+    path:string
     publishOnNextBuild:boolean
 }
 
@@ -24,7 +25,8 @@ export interface CanvaProps{
 }
 
 export interface ContentBarProps{
-    conteudo:Conteudo,
+    
+    allPosts:allPosts,
     publishButtonState: string
     clickedChild: (childId:string)=>void,
     NewContentItemCreated:()=>void,

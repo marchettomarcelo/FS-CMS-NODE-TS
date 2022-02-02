@@ -1,15 +1,15 @@
 import { useRef } from "react";
-import { Conteudo, Post, ContentBarProps, PossibleControlBarIds  } from "../react-app-env";
+import { allPosts, Post, ContentBarProps, PossibleControlBarIds  } from "../react-app-env";
 import ContentItem from "./ContentItem";
 import Controls from "./ControlBar";
 
 export default function ContentBar({
   visitWebsite,
-  conteudo, clickedChild, 
+  allPosts , clickedChild, 
   NewContentItemCreated, saveChanges, 
   publishWebsite, publishButtonState}: ContentBarProps) {
 
-  const Conteudo: Conteudo = [...conteudo]
+  const Conteudo: allPosts = [...allPosts]
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -56,14 +56,14 @@ export default function ContentBar({
       <hr className=" h-1 border border-black rounded-sm w-11/12 my-2 bg-black "/>
       
 
-      <div className=" overflow-scroll h-full w-full grid gap-4">
+      <div className=" overflow-scroll h-auto w-full grid gap-4">
         {Conteudo.map((post:Post, id:any) => {
           return (
             <ContentItem
               id={id.toString()}
               key={id}
-              titulo={post.titulo}
-              conteudo={post.conteudo}
+              path={post.path}
+              info={post.info}
               publishOnNextBuild={post.publishOnNextBuild}
             />
           );

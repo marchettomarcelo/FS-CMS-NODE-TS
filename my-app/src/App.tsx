@@ -7,7 +7,7 @@ import ContentBar from "./components/ContentBar";
 import GetTitulos from "./utils/GetTitulos";
 import UniqueNewPostTitle from "./utils/UniqueNewPostTitle";
 import axios from 'axios';
-import { Conteudo, Post } from './react-app-env';
+import { allPosts, Post } from './react-app-env';
 import loadingSVG from "./assets/loadingSVG.svg"
 import Sleep from "./utils/Sleep"
 import useWindowDimensions from './utils/Dimensions';
@@ -16,8 +16,8 @@ import SideBar from './components/SideBar';
 function App() {
   //Create the api later
 
-  const [conteudo, setConteudo] = useState<Conteudo>([{ titulo: " ", conteudo: "", _id: "0", __v:0, publishOnNextBuild: false }]);
-  const [editingNow, setEditingNow] = useState<Post>({ titulo: "", conteudo: "", _id: "0", __v:0, publishOnNextBuild: false });
+  const [conteudo, setConteudo] = useState<allPosts>([{ path: "", info: "", _id: "0", __v:0, publishOnNextBuild: false, HTMLContent:"" }]);
+  const [editingNow, setEditingNow] = useState<Post>({ path: "", info: "", _id: "0", __v:0, publishOnNextBuild: false, HTMLContent:"" });
   const [loading, setLoading] = useState<boolean>(false)
   const [publishButtonState, setPublishButtonState] = useState<"loading"|"default"|"success">("default")
   
@@ -28,15 +28,16 @@ function App() {
       setLoading(true)
 
       const {data} = await axios.get("/post");
-      const newlyFetchedConteudo:Conteudo = data
-      const formatedNewlyFetchedConteudo:Conteudo = newlyFetchedConteudo.map(({conteudo, _id, __v, titulo, publishOnNextBuild}:Post)=>{
+      const newlyFetchedConteudo:allPosts = data
+      const formatedNewlyFetchedConteudo:allPosts = newlyFetchedConteudo.map(({info, _id, __v, path, publishOnNextBuild, HTMLContent}:Post)=>{
         
         return {
           publishOnNextBuild,
-          conteudo,
+          info,
           _id,
           __v,
-          titulo : titulo.replaceAll("-", " ")
+          HTMLContent,
+          path : path.replaceAll("-", " ")
         }
 
       })
@@ -69,8 +70,9 @@ function App() {
   const clickedChild = (e:any) => {
     //add save changes later manin
     const ArrayOftitulos = GetTitulos(conteudo);
+
     const titulosDuplicados = ArrayOftitulos.filter(
-      tituloAtual => tituloAtual === editingNow.titulo
+      (tituloAtual:any) => tituloAtual === editingNow.path
       );
       if (titulosDuplicados.length > 1) {
         //Alertar o user sobre os titulo repetido
@@ -84,11 +86,11 @@ function App() {
 
     const NewContentItemCreated = async () => {
     await saveChanges()
-     var titulo = UniqueNewPostTitle(GetTitulos(conteudo));
+     var path = UniqueNewPostTitle(GetTitulos(conteudo));
       try{
         await axios.post("/post", {
-          titulo,
-          conteudo: "New frontiers, new opportunities"
+          path,
+          info: "New frontiers, new opportunities"
         })
       }catch(e){
         console.log(e)
@@ -98,6 +100,9 @@ function App() {
     };
 
   const postFoiEditado = (postEditado:Post) => {
+    
+    // console.log(postEditado)
+
     let novo = [...conteudo];
     novo[conteudo.indexOf(editingNow)] = postEditado;
     setEditingNow(postEditado);
@@ -162,7 +167,9 @@ function App() {
         <div className="h-screen w-screen backdrop-blur-sm absolute z-50 flex items-center justify-center"> 
           <img src={loadingSVG} alt="loading" className="w-1/6"/>
         </div>}
-    
+
+        <button onClick={()=> console.log(conteudo)}>oap</button>
+
         <div className={mainDivStyle}>   
             
           
@@ -175,7 +182,7 @@ function App() {
             publishWebsite={publishWebsite}
             publishButtonState={publishButtonState}
 
-            conteudo={conteudo}
+            allPosts={conteudo}
             clickedChild={clickedChild}
             NewContentItemCreated={NewContentItemCreated}
             saveChanges={saveChanges}

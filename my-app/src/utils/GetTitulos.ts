@@ -1,8 +1,8 @@
-import { Conteudo } from "../react-app-env";
+import { allPosts } from "../react-app-env";
 
-export default function GetTitulo(conteudo:Conteudo){
+export default function GetTitulo(conteudo:allPosts){
   const Titulos = conteudo.map((post) => {
-    return post.titulo;
+    return post.path;
   });
 
   return Titulos

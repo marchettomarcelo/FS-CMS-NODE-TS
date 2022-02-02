@@ -12,6 +12,7 @@ interface CanvaProps{
 
 export default function Canva({editingNow, postFoiEditado, deleteEditingNow, sideMenu }: CanvaProps) {
   
+  // console.log(editingNow)
   
   //notifiing parent component of changes on the current post
   const HandleTypeChanges = (e:any) => {
@@ -32,11 +33,7 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow, sid
   }
 
   const { width } = useWindowDimensions()
-
-  
   const cla = `hidden w-full`
-  
-
   // console.log(editingNow)
   return (
     <div
@@ -53,13 +50,13 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow, sid
           focus:bg-white focus:border-gray-600 focus:outline-none
           transition
           ease-in-out"
-          name="titulo"
-          id="titulo"
+          name="path"
+          id="path"
 
           
 
           rows={2}
-          value={editingNow.titulo}
+          value={editingNow.path}
           
           onChange={HandleTypeChanges}
         />
@@ -70,11 +67,11 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow, sid
           focus:bg-white focus:border-gray-600 focus:outline-none
           transition
           ease-in-out"
-          name="conteudo"
-          id="conteudo"
+          name="info"
+          id="info"
           rows={5}
           onChange={HandleTypeChanges}
-          value={editingNow.conteudo }
+          value={editingNow.info }
         />
 
         <div
@@ -94,12 +91,15 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow, sid
         publishOnNextBuild={editingNow.publishOnNextBuild} 
         />
       
+      <button  onClick={deleteEditingNow} className="ml-auto">
+
         <svg xmlns="http://www.w3.org/2000/svg" 
         className="w-12 h-12 cursor-pointer ml-auto " 
         onClick={deleteEditingNow}
         fill="none" viewBox="0 0 24 24" stroke="#ff000d">
           <path  onClick={deleteEditingNow} strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
         </svg>
+      </button>
 
 
       </div>

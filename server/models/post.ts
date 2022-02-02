@@ -4,9 +4,12 @@ const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true });
 
 const Post = mongoose.model("Posts", {
-  titulo: { type: String, required: true, trim: true },
-  conteudo: { type: String, required: true },
+  path: { type: String, required: true, trim: true },
+  info: { type: String, required: true },
+
   publishOnNextBuild: { type: Boolean, default: false, required: true },
+
+  HTMLContent: { type: String, default: "oi" }
 });
 
 export default Post

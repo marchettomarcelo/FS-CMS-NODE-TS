@@ -1,5 +1,5 @@
 import axios from "axios";
-const path = require("path");
+const pathModule = require("path");
 const express = require("express");
 import Post from "./models/post"
 import StatusFinder from "./utils/StatusFinder";
@@ -11,12 +11,12 @@ import crypto from "crypto"
 const PORT = process.env.PORT || 3001;
 const app = express();
 // Have Node serve the files for our built React app
-app.use(express.static(path.resolve(__dirname, "../my-app/build")));
+app.use(express.static(pathModule.resolve(__dirname, "../my-app/build")));
 app.use(express.json());
 
 // Handle GET requests to /api route
 app.get("/onepost", async (req:any , res:any) => {
-  const pedido = await Post.findOne({ titulo: req.query.titulo });
+  const pedido = await Post.findOne({ path: req.query.path });
 
   res.json(pedido);
 });
@@ -36,16 +36,16 @@ app.patch("/update-posts", async (req:any, res:any) => {
   const dataToUpdateDatabase = req.body;
 
   for (let i = 0; i < dataToUpdateDatabase.length; i++) {
-    const { _id, titulo, conteudo, publishOnNextBuild } = dataToUpdateDatabase[i];
+    const { _id, path, info, HTMLContent , publishOnNextBuild } = dataToUpdateDatabase[i];
 
     try {
-      const tituloFormatado = titulo.replaceAll(" ", "-");
+      const tituloFormatado = path.replaceAll(" ", "-");
 
       await Post.findByIdAndUpdate(
         { _id },
         {
-          titulo: tituloFormatado,
-          conteudo,
+          path: tituloFormatado,
+          info,
           publishOnNextBuild
         }
       );
@@ -95,8 +95,8 @@ app.get("/publish-website", async (req:any, res:any) => {
   const testPostString = `00000${testPost.toString("hex")}00000`
 
   const newPost = await new Post({
-    titulo: testPostString, 
-    conteudo:  "Descição do post: " + testPostString,
+    path: testPostString, 
+    info:  "Descição do post: " + testPostString,
     publishOnNextBuild: true
   })
 
@@ -123,7 +123,7 @@ for(let i = 0; i< 80; i++){
   }
 }
 
-await Post.findOneAndDelete({titulo: testPostString})    
+await Post.findOneAndDelete({path: testPostString})    
 res.status(200).send("Publicado com sucesso!")
 
   
@@ -131,7 +131,7 @@ res.status(200).send("Publicado com sucesso!")
 
 // All other GET requests not handled before will return our React app
 app.get("*", (req:any, res:any) => {
-  res.sendFile(path.resolve(__dirname, "../my-app/build", "index.html"));
+  res.sendFile(pathModule.resolve(__dirname, "../my-app/build", "index.html"));
 });
 
 app.listen(PORT, () => {

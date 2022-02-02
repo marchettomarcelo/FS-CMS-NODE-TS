@@ -1,20 +1,21 @@
 import {ContentItemProps} from "../react-app-env"
 
-export default function ContentItem({ conteudo, id, titulo, publishOnNextBuild  }:ContentItemProps) {
+export default function ContentItem({ info, id, path, publishOnNextBuild  }:ContentItemProps) {
   return (
     <div
       id={id}
       className="cursor-pointer border-4 border-black flex flex-row
       content-center
+      h-fit
       border-solid  p-2 rounded shadow-lg w-11/12 
       hover:bg-gray-200 active:bg-gray-300"
     >
       <div className="w-10/12">
         <h3 id={id} className="text-xl font-bold">
-          {titulo.length > 20 ? titulo.slice(0, 20) + "..." : titulo}
+          {path.length > 20 ? path.slice(0, 20) + "..." : path}
         </h3>
         <p id={id} className="text-sm break-all">
-          {conteudo.length > 80 ? conteudo.slice(0, 80) + "..." : conteudo}
+          {info.length > 80 ? info.slice(0, 80) + "..." : info}
         </p>
 
       </div>
