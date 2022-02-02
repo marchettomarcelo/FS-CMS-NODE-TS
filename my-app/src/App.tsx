@@ -144,7 +144,7 @@ function App() {
   }
 
   
-  const {width} = useWindowDimensions()
+  const { width } = useWindowDimensions()
 
   const mainDivStyle = width < 600 && sideMenu? 
   `h-[90vh] xl:h-screen w-screen 
