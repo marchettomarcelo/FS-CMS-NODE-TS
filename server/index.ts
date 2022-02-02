@@ -57,6 +57,7 @@ app.patch("/update-posts", async (req:any, res:any) => {
 });
 
 app.delete("/post/:_id", async (req:any, res:any) => {
+  
   const postBeingDeleted = req.params._id;
   try {
     await Post.findByIdAndDelete(postBeingDeleted);

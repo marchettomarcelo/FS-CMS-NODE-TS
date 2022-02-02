@@ -12,7 +12,6 @@ interface CanvaProps{
 
 export default function Canva({editingNow, postFoiEditado, deleteEditingNow, sideMenu }: CanvaProps) {
   
-  // console.log(editingNow)
   
   //notifiing parent component of changes on the current post
   const HandleTypeChanges = (e:any) => {
@@ -34,7 +33,7 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow, sid
 
   const { width } = useWindowDimensions()
   const cla = `hidden w-full`
-  // console.log(editingNow)
+  
   return (
     <div
       className={`flex flex-col 
@@ -52,9 +51,6 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow, sid
           ease-in-out"
           name="path"
           id="path"
-
-          
-
           rows={2}
           value={editingNow.path}
           
@@ -74,11 +70,7 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow, sid
           value={editingNow.info }
         />
 
-        <div
-        role="textbox"
-        >
-
-        </div>
+        
       </div>
       
       <div className=" bg-[#EDE1D4] border-4 m-2 border-solid border-black rounded h-20 w-auto items-center p-4

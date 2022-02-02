@@ -41,7 +41,12 @@ function App() {
         }
 
       })
+
+
+
       setConteudo(formatedNewlyFetchedConteudo);
+
+      console.log("conteudo", formatedNewlyFetchedConteudo[conteudoIndex], "Conteudo index", conteudoIndex)
       setEditingNow(formatedNewlyFetchedConteudo[conteudoIndex]);
       setLoading(false)
     } catch (e) {
@@ -79,7 +84,7 @@ function App() {
         console.log("Altere o título do post atual para mudar de post. Não é possível ter post com títulos iguais");
         return;
       }
-      console.log(conteudo[e])
+      
       setEditingNow(conteudo[e]);
     };
 
@@ -112,15 +117,16 @@ function App() {
 
 
   const deleteEditingNow = async () => {
-    await saveChanges()
+
+    // await saveChanges()
     if (conteudo.length === 1){
       return
     }
     try {
       await axios.delete(`/post/${editingNow._id}`)
+      const index = conteudo.indexOf(editingNow)  
+      fetchDataAndSetEditingNow(index - 1 < 0 ? 0: index - 1 )
       
-      const index = conteudo.indexOf(editingNow)
-      fetchDataAndSetEditingNow(index === 0 ? 0 :  index -1)
     } catch (e) {
       console.log(e)
       return
@@ -132,8 +138,7 @@ function App() {
       return
     }
     setPublishButtonState("loading")
-    const data = await axios.get("/publish-website")
-    console.log(data)
+    await axios.get("/publish-website")
     setPublishButtonState("success")
     await Sleep(5000)
     setPublishButtonState("default")
