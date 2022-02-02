@@ -168,8 +168,6 @@ function App() {
           <img src={loadingSVG} alt="loading" className="w-1/6"/>
         </div>}
 
-        <button onClick={()=> console.log(conteudo)}>oap</button>
-
         <div className={mainDivStyle}>   
             
           

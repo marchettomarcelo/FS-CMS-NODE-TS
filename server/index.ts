@@ -16,7 +16,7 @@ app.use(express.json());
 
 // Handle GET requests to /api route
 app.get("/onepost", async (req:any , res:any) => {
-  const pedido = await Post.findOne({ path: req.query.path });
+  const pedido = await Post.findOne({ path: req.query.titulo });
 
   res.json(pedido);
 });
