@@ -4,8 +4,8 @@ module.exports = {
     extend: {
       width: {
         side: "60px",
-        contbar: "26%",
-        canva: "68%",
+        contbar: "34%",
+        canva: "60%",
       },
     },
   },

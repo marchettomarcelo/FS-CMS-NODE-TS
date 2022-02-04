@@ -32,11 +32,11 @@ function App() {
       const formatedNewlyFetchedConteudo:allPosts = newlyFetchedConteudo.map(({info, _id, __v, path, publishOnNextBuild, HTMLContent}:Post)=>{
         
         return {
+          HTMLContent,
           publishOnNextBuild,
           info,
           _id,
           __v,
-          HTMLContent,
           path : path.replaceAll("-", " ")
         }
 
@@ -45,8 +45,6 @@ function App() {
 
 
       setConteudo(formatedNewlyFetchedConteudo);
-
-      console.log("conteudo", formatedNewlyFetchedConteudo[conteudoIndex], "Conteudo index", conteudoIndex)
       setEditingNow(formatedNewlyFetchedConteudo[conteudoIndex]);
       setLoading(false)
     } catch (e) {
@@ -175,6 +173,7 @@ function App() {
 
         <div className={mainDivStyle}>   
             
+            {/* <button onClick={()=> console.log(conteudo)}>aqui</button> */}
           
           <SideBar toggleSideMenu={toggleSideMenu}/>
         

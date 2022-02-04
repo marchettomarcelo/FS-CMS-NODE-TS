@@ -1,7 +1,9 @@
 // import { CanvaProps } from "../react-app-env";
 import { Post } from "../react-app-env";
 import SwitchItem from "./SwitchItem"
+
 import useWindowDimensions from "../utils/Dimensions"
+
 
 interface CanvaProps{
   editingNow: Post,
@@ -20,7 +22,7 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow, sid
       [e.target.id]: e.target.value,
     };
     postFoiEditado(novo);
-    // setEditingNowInCanva(novo);
+
   };
   
   const HandleSwitchChanges = (SwitchValue:boolean)=>{
@@ -39,33 +41,34 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow, sid
       className={`flex flex-col 
 
     ${width < 600 && sideMenu && cla}
+    p-4
       border-4 border-black 
       border-solid w-full  h-11/12 rounded shadow-2xl gap-4`}
     >
-      <div className=" overflow-y-auto m-4 overscroll-non">
-        <textarea
-          className="text-5xl font-extrabold  p-2 w-full
+      <div className=" space-y-4 overscroll-non">
+        <input
+          className="text-2xl font-extrabold  p-2 w-full px-4
           border border-solid border-gray-300 rounded
           focus:bg-white focus:border-gray-600 focus:outline-none
           transition
           ease-in-out"
           name="path"
           id="path"
-          rows={2}
+          
           value={editingNow.path}
           
           onChange={HandleTypeChanges}
         />
         
-        <textarea          
-          className="text-2xl font-sans  p-2 w-full whitespace-pre-wrap indent-8
+        <input        
+          className="text-xl font-sans  p-2 w-full whitespace-pre-wrap px-4
           border border-solid border-gray-300 rounded
           focus:bg-white focus:border-gray-600 focus:outline-none
           transition
           ease-in-out"
           name="info"
           id="info"
-          rows={5}
+          
           onChange={HandleTypeChanges}
           value={editingNow.info }
         />
@@ -73,9 +76,8 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow, sid
         
       </div>
       
-      <div className=" bg-[#EDE1D4] border-4 m-2 border-solid border-black rounded h-20 w-auto items-center p-4
+      <div className=" bg-[#EDE1D4] border-4  border-solid border-black rounded h-20 w-auto items-center p-4
       flex bottom-1 mt-auto">
-      
       
         <h1 className="mr-4 text-lg font-bold">Publicar <br /> este Post</h1>
         <SwitchItem 
