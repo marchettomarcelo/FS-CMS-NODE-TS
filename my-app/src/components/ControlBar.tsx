@@ -40,6 +40,7 @@ export default function Controls({publishButtonState}:any) {
       rounded shadow-lg  hover:bg-orange-500 justify-center
       active:bg-orange-600 cursor-pointer p-3 flex items-center"
       nome="Publicar Site"
+
     />
 
   }
@@ -67,7 +68,7 @@ export default function Controls({publishButtonState}:any) {
 
 
   return (
-    <div className="grid grid-cols-1 gap-4 xl:grid-cols-2 justify-between  w-11/12">
+    <div className="grid grid-cols-1 gap-4 xl:grid-cols-2 grid-rows-2 justify-between  w-11/12">
       <ControlButton 
         id={id1} 
         clas="border-4 bg-[#E0A458] border-black border-solid 

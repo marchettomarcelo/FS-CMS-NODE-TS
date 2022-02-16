@@ -45,11 +45,11 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow, sid
       border-4 border-black 
       border-solid w-full  h-11/12 rounded shadow-2xl gap-4`}
     >
-      <div className=" space-y-4 overscroll-non">
+      <div className="flex flex-col h-full space-y-4 overscroll-non">
         <input
           className="text-2xl font-extrabold  p-2 w-full px-4
-          border border-solid border-gray-300 rounded
-          focus:bg-white focus:border-gray-600 focus:outline-none
+          border border-solid border-gray-400 rounded
+          focus:bg-white focus:border-black focus:outline-none
           transition
           ease-in-out"
           name="path"
@@ -60,10 +60,11 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow, sid
           onChange={HandleTypeChanges}
         />
         
-        <input        
-          className="text-xl font-sans  p-2 w-full whitespace-pre-wrap px-4
-          border border-solid border-gray-300 rounded
-          focus:bg-white focus:border-gray-600 focus:outline-none
+        <textarea
+              
+          className="text-xl font-sans w-full p-2 flex-grow  min-h-[50px]  px-4 resize-none
+          border border-solid border-gray-400 rounded
+          focus:bg-white focus:border-black focus:outline-none
           transition
           ease-in-out"
           name="info"

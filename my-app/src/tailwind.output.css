@@ -523,16 +523,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 1.5rem;
 }
 
-.mt-4 {
-  margin-top: 1rem;
-}
-
 .inline-block {
   display: inline-block;
-}
-
-.inline {
-  display: inline;
 }
 
 .flex {
@@ -591,10 +583,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-\[34px\] {
   height: 34px;
-}
-
-.h-full {
-  height: 100%;
 }
 
 .w-screen {
@@ -780,11 +768,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: transparent;
 }
 
-.border-gray-500 {
-  --tw-border-opacity: 1;
-  border-color: rgb(107 114 128 / var(--tw-border-opacity));
-}
-
 .bg-\[\#EDE1D4\] {
   --tw-bg-opacity: 1;
   background-color: rgb(237 225 212 / var(--tw-bg-opacity));
@@ -838,11 +821,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.bg-gray-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
 .p-4 {
@@ -1056,7 +1034,7 @@ body {
   }
 
   .xl\:w-contbar {
-    width: 26%;
+    width: 34%;
   }
 
   .xl\:grid-cols-2 {

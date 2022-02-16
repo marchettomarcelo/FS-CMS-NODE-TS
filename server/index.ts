@@ -46,7 +46,8 @@ app.patch("/update-posts", async (req:any, res:any) => {
         {
           path: tituloFormatado,
           info,
-          publishOnNextBuild
+          publishOnNextBuild,
+          HTMLContent
         }
       );
     } catch (e:any) {
