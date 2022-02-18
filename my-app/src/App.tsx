@@ -147,6 +147,9 @@ function App() {
     if(publishButtonState === "loading" || publishButtonState === "success" ){
       return
     }
+
+    await saveChanges()
+
     setPublishButtonState("loading")
     await axios.get("/publish-website")
     setPublishButtonState("success")
