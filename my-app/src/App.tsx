@@ -124,6 +124,10 @@ function App() {
 
   const deleteEditingNow = async () => {
 
+    if (publishButtonState === "loading"){
+      return alert("Não é possível deletar posts quando o site está sendo publicado")
+    }
+
     // await saveChanges()
     if (conteudo.length === 1){
       return
