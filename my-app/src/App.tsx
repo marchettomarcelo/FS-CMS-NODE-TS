@@ -58,6 +58,9 @@ function App() {
 
 
   const saveChanges = async () => {
+    if (publishButtonState === "loading"){
+      return alert("Não é possível salvar mudanças quando o site está sendo publicado")
+    }
     setLoading(true)
     try {
       await axios.patch("/update-posts", conteudo )
@@ -88,6 +91,11 @@ function App() {
 
 
     const NewContentItemCreated = async () => {
+    
+      if (publishButtonState === "loading"){
+      return alert("Não é possível adicionar novos posts quando o site está sendo publicado")
+    }
+
     await saveChanges()
      var path = UniqueNewPostTitle(GetTitulos(conteudo));
       try{
