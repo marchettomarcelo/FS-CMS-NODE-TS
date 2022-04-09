@@ -20,9 +20,12 @@ function App() {
   const [editingNow, setEditingNow] = useState<Post>({ path: "", info: "", _id: "0", __v:0, publishOnNextBuild: false, HTMLContent:"" });
   const [loading, setLoading] = useState<boolean>(false)
   const [publishButtonState, setPublishButtonState] = useState<"loading"|"default"|"success">("default")
-  
   const [sideMenu, setSideMenu] = useState<boolean>(true)
   
+  useEffect(()=>{
+    console.log("rerendered mein!")
+  })
+
   async function fetchDataAndSetEditingNow(conteudoIndex:number = 0) {
     try {
       setLoading(true)
