@@ -1,8 +1,10 @@
 // import { CanvaProps } from "../react-app-env";
 import { Post } from "../react-app-env";
 import SwitchItem from "./SwitchItem"
+import { useEffect, useState } from "react";
 
 import useWindowDimensions from "../utils/Dimensions"
+import MDEditor from '@uiw/react-md-editor';
 
 
 interface CanvaProps{
@@ -14,17 +16,32 @@ interface CanvaProps{
 
 export default function Canva({editingNow, postFoiEditado, deleteEditingNow, sideMenu }: CanvaProps) {
   
-  
+  const [value, setValue] = useState("**Hello world!!!**");
+
+  useEffect(()=>{
+    setValue(editingNow.info)
+  }, [editingNow])
+
   //notifiing parent component of changes on the current post
   const HandleTypeChanges = (e:any) => {
+    
     let novo = {
       ...editingNow,
-      [e.target.id]: e.target.value,
+      "path": e.target.value,
     };
     postFoiEditado(novo);
 
   };
+
+  const handleEditor = (e:any)=>{
+    let novo = {
+      ...editingNow,
+      "info": e,
+    }
+    postFoiEditado(novo);
+  }
   
+
   const HandleSwitchChanges = (SwitchValue:boolean)=>{
     let novo = {
       ...editingNow,
@@ -33,6 +50,7 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow, sid
     postFoiEditado(novo);
   }
 
+  
   const { width } = useWindowDimensions()
   const cla = `hidden w-full`
   
@@ -59,20 +77,18 @@ export default function Canva({editingNow, postFoiEditado, deleteEditingNow, sid
           
           onChange={HandleTypeChanges}
         />
-        
-        <textarea
-              
-          className="text-xl font-sans w-full p-2 flex-grow  min-h-[50px]  px-4 resize-none
-          border border-solid border-gray-400 rounded
-          focus:bg-white focus:border-black focus:outline-none
-          transition
-          ease-in-out"
-          name="info"
-          id="info"
+     
+      <div className="container">
+
+        <MDEditor
+          value={value}
+          onChange={(e)=> handleEditor(e)}
+          height={530}
+          visibleDragbar={false}
           
-          onChange={HandleTypeChanges}
-          value={editingNow.info }
         />
+      </div>
+
 
         
       </div>

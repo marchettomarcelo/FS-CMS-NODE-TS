@@ -5,6 +5,7 @@ import "./tailwind.output.css"
 import App from './App';
 
 
+document.documentElement.setAttribute('data-color-mode', 'light')
 ReactDOM.render(
   <React.StrictMode>
     <App />
