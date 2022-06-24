@@ -69,7 +69,7 @@ app.delete("/post/:_id", async (req:any, res:any) => {
 });
 
 app.get("/", (req:any, res:any)=>{
-  res.send("opa")
+  res.send("Main page man")
 })
 
 app.get("/post", async (req:any, res:any) => {
